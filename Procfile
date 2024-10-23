@@ -1,0 +1,1 @@
+web: gunicorn charmed_and_crafted.wsgi:application
