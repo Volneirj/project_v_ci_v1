@@ -60,6 +60,11 @@ body {
     background: #000 !important;
 }
 
+a.category-badge > span.badge:hover {
+    background: #212529 !important;
+    color: #fff !important;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
@@ -103,6 +108,7 @@ body {
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
 }
 
 .overlay h1 {
