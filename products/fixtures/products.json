@@ -1,0 +1,170 @@
+[
+    {
+       "pk":1,
+       "model":"products.product",
+       "fields":{
+          "sku":"CNDL00000001",
+          "name":"Lavender Bliss Candle",
+          "description":"A relaxing lavender-scented candle to ease the senses and set a calm atmosphere.",
+          "price":15.99,
+          "category":1,
+          "rating":4.8,
+          "image_url":"media/item1.webp",
+          "image":"item1.webp"
+       }
+    },
+    {
+       "pk":2,
+       "model":"products.product",
+       "fields":{
+          "sku":"CNDL00000002",
+          "name":"Vanilla Dream Candle",
+          "description":"Soft and sweet vanilla candle perfect for a cozy evening.",
+          "price":14.99,
+          "category":1,
+          "rating":4.7,
+          "image_url":"media/item2.webp",
+          "image":"item2.webp"
+       }
+    },
+    {
+       "pk":3,
+       "model":"products.product",
+       "fields":{
+          "sku":"CNDL00000003",
+          "name":"Citrus Sunshine Candle",
+          "description":"An invigorating citrus blend to brighten up any space.",
+          "price":16.99,
+          "category":1,
+          "rating":4.5,
+          "image_url":"media/item3.webp",
+          "image":"item3.webp"
+       }
+    },
+    {
+       "pk":4,
+       "model":"products.product",
+       "fields":{
+          "sku":"CNDL00000004",
+          "name":"Rose Petal Candle",
+          "description":"A delicate, floral rose fragrance that uplifts and calms.",
+          "price":17.99,
+          "category":1,
+          "rating":4.6,
+          "image_url":"media/item4.webp",
+          "image":"item4.webp"
+       }
+    },
+    {
+       "pk":5,
+       "model":"products.product",
+       "fields":{
+          "sku":"CNDL00000005",
+          "name":"Ocean Breeze Candle",
+          "description":"Refreshing ocean scents to remind you of beach days.",
+          "price":15.99,
+          "category":1,
+          "rating":4.4,
+          "image_url":"media/item5.webp",
+          "image":"item5.webp"
+       }
+    },
+    {
+       "pk":6,
+       "model":"products.product",
+       "fields":{
+          "sku":"CNDL00000006",
+          "name":"Cinnamon Spice Candle",
+          "description":"Warm and cozy cinnamon scent, perfect for fall and winter.",
+          "price":18.99,
+          "category":1,
+          "rating":4.9,
+          "image_url":"media/item6.webp",
+          "image":"item6.webp"
+       }
+    },
+    {
+       "pk":7,
+       "model":"products.product",
+       "fields":{
+          "sku":"CHRM00000001",
+          "name":"Gemini Zodiac Charm",
+          "description":"A unique charm for those born under the sign of Gemini.",
+          "price":10.99,
+          "category":5,
+          "rating":4.7,
+          "image_url":"media/item7.webp",
+          "image":"item7.webp"
+       }
+    },
+    {
+       "pk":8,
+       "model":"products.product",
+       "fields":{
+          "sku":"CHRM00000002",
+          "name":"Crystal Heart Charm",
+          "description":"A crystal heart charm to symbolize love and peace.",
+          "price":11.99,
+          "category":5,
+          "rating":4.8,
+          "image_url":"media/item8.webp",
+          "image":"item8.webp"
+       }
+    },
+    {
+       "pk":9,
+       "model":"products.product",
+       "fields":{
+          "sku":"CHRM00000003",
+          "name":"Rose Quartz Charm",
+          "description":"A charm with rose quartz for those who love healing energy.",
+          "price":9.99,
+          "category":5,
+          "rating":4.6,
+          "image_url":"media/item9.webp",
+          "image":"item9.webp"
+       }
+    },
+    {
+       "pk":10,
+       "model":"products.product",
+       "fields":{
+          "sku":"CHRM00000004",
+          "name":"Protection Talisman Charm",
+          "description":"Carry this charm to attract good fortune and protection.",
+          "price":12.99,
+          "category":5,
+          "rating":4.5,
+          "image_url":"media/item10.webp",
+          "image":"item10.webp"
+       }
+    },
+    {
+       "pk":11,
+       "model":"products.product",
+       "fields":{
+          "sku":"CHRM00000005",
+          "name":"Zodiac Leo Charm",
+          "description":"A bold charm for those born under the Leo sign.",
+          "price":10.49,
+          "category":5,
+          "rating":4.7,
+          "image_url":"media/item11.webp",
+          "image":"item11.webp"
+       }
+    },
+    {
+       "pk":12,
+       "model":"products.product",
+       "fields":{
+          "sku":"CHRM00000006",
+          "name":"Crystal Healing Charm",
+          "description":"Carry a charm with healing crystals for positivity.",
+          "price":13.99,
+          "category":5,
+          "rating":4.9,
+          "image_url":"media/item12.webp",
+          "image":"item12.webp"
+       }
+    }
+]

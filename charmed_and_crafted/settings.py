@@ -29,7 +29,7 @@ if not SECRET_KEY:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['boutiqueadowt-74adbcec463d.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['charmedandcraftedwt-74adbcec463d.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'home',
+    'products',
 
     # Other
     'crispy_forms',
@@ -187,7 +188,7 @@ print(MEDIA_ROOT)
 #     }
 
 #     # Bucket Config
-#     AWS_STORAGE_BUCKET_NAME = 'boutiqueadowt'
+#     AWS_STORAGE_BUCKET_NAME = 'charmedandcraftedwt'
 #     AWS_S3_REGION_NAME = 'eu-north-1'
 #     AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 #     AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
@@ -211,5 +212,5 @@ STRIPE_CURRENCY = 'usd'
 STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = config('STRIPE_WH_SECRET', '')
-DEFAULT_FROM_EMAIL = 'boutiqueado@example.com'
+DEFAULT_FROM_EMAIL = 'charmedandcrafted@example.com'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

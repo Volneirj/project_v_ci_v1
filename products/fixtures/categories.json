@@ -1,0 +1,98 @@
+[
+    {
+       "pk":1,
+       "model":"products.category",
+       "fields":{
+          "name":"candles",
+          "friendly_name":"Candles"
+       }
+    },
+    {
+       "pk":2,
+       "model":"products.category",
+       "fields":{
+          "name":"scented_candles",
+          "friendly_name":"Scented Candles"
+       }
+    },
+    {
+       "pk":3,
+       "model":"products.category",
+       "fields":{
+          "name":"unscented_candles",
+          "friendly_name":"Unscented Candles"
+       }
+    },
+    {
+       "pk":4,
+       "model":"products.category",
+       "fields":{
+          "name":"personalized_candles",
+          "friendly_name":"Personalized Candles"
+       }
+    },
+    {
+       "pk":5,
+       "model":"products.category",
+       "fields":{
+          "name":"charms",
+          "friendly_name":"Charms & Talismans"
+       }
+    },
+    {
+       "pk":6,
+       "model":"products.category",
+       "fields":{
+          "name":"zodiac_charms",
+          "friendly_name":"Zodiac Charms"
+       }
+    },
+    {
+       "pk":7,
+       "model":"products.category",
+       "fields":{
+          "name":"crystal_charms",
+          "friendly_name":"Crystal Charms"
+       }
+    },
+    {
+       "pk":8,
+       "model":"products.category",
+       "fields":{
+          "name":"personalized_items",
+          "friendly_name":"Personalized Gifts"
+       }
+    },
+    {
+       "pk":9,
+       "model":"products.category",
+       "fields":{
+          "name":"gift_sets",
+          "friendly_name":"Gift Sets"
+       }
+    },
+    {
+       "pk":10,
+       "model":"products.category",
+       "fields":{
+          "name":"seasonal",
+          "friendly_name":"Seasonal Specials"
+       }
+    },
+    {
+       "pk":11,
+       "model":"products.category",
+       "fields":{
+          "name":"new_arrivals",
+          "friendly_name":"New Arrivals"
+       }
+    },
+    {
+       "pk":12,
+       "model":"products.category",
+       "fields":{
+          "name":"clearance",
+          "friendly_name":"Clearance"
+       }
+    }
+]
