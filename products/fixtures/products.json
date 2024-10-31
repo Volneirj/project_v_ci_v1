@@ -21,7 +21,7 @@
           "name":"Vanilla Dream Candle",
           "description":"Soft and sweet vanilla candle perfect for a cozy evening.",
           "price":14.99,
-          "category":1,
+          "category":2,
           "rating":4.7,
           "image_url":"media/item2.webp",
           "image":"item2.webp"
@@ -35,7 +35,7 @@
           "name":"Citrus Sunshine Candle",
           "description":"An invigorating citrus blend to brighten up any space.",
           "price":16.99,
-          "category":1,
+          "category":2,
           "rating":4.5,
           "image_url":"media/item3.webp",
           "image":"item3.webp"
@@ -49,7 +49,7 @@
           "name":"Rose Petal Candle",
           "description":"A delicate, floral rose fragrance that uplifts and calms.",
           "price":17.99,
-          "category":1,
+          "category":2,
           "rating":4.6,
           "image_url":"media/item4.webp",
           "image":"item4.webp"
@@ -63,7 +63,7 @@
           "name":"Ocean Breeze Candle",
           "description":"Refreshing ocean scents to remind you of beach days.",
           "price":15.99,
-          "category":1,
+          "category":2,
           "rating":4.4,
           "image_url":"media/item5.webp",
           "image":"item5.webp"
@@ -77,7 +77,7 @@
           "name":"Cinnamon Spice Candle",
           "description":"Warm and cozy cinnamon scent, perfect for fall and winter.",
           "price":18.99,
-          "category":1,
+          "category":4,
           "rating":4.9,
           "image_url":"media/item6.webp",
           "image":"item6.webp"
@@ -91,7 +91,7 @@
           "name":"Gemini Zodiac Charm",
           "description":"A unique charm for those born under the sign of Gemini.",
           "price":10.99,
-          "category":5,
+          "category":6,
           "rating":4.7,
           "image_url":"media/item7.webp",
           "image":"item7.webp"
@@ -133,7 +133,7 @@
           "name":"Protection Talisman Charm",
           "description":"Carry this charm to attract good fortune and protection.",
           "price":12.99,
-          "category":5,
+          "category":7,
           "rating":4.5,
           "image_url":"media/item10.webp",
           "image":"item10.webp"
@@ -147,7 +147,7 @@
           "name":"Zodiac Leo Charm",
           "description":"A bold charm for those born under the Leo sign.",
           "price":10.49,
-          "category":5,
+          "category":6,
           "rating":4.7,
           "image_url":"media/item11.webp",
           "image":"item11.webp"
@@ -161,10 +161,94 @@
           "name":"Crystal Healing Charm",
           "description":"Carry a charm with healing crystals for positivity.",
           "price":13.99,
-          "category":5,
+          "category":7,
           "rating":4.9,
           "image_url":"media/item12.webp",
           "image":"item12.webp"
        }
-    }
+    },
+    {
+      "pk":13,
+      "model":"products.product",
+      "fields": {
+         "sku": "PRSN00000001",
+         "name": "Custom Name Candle",
+         "description": "A personalized candle with your name engraved for a unique touch.",
+         "price":19.99,
+         "category":4,
+         "rating":4.8,
+         "image_url": "media/item13.webp",
+         "image": "item13.webp"
+      }
+   },
+   {
+      "pk":14,
+      "model":"products.product",
+      "fields": {
+         "sku": "GFTS00000001",
+         "name": "Candle Gift Set",
+         "description": "A curated set of popular scented candles, perfect for gifts.",
+         "price":29.99,
+         "category":9,
+         "rating":4.9,
+         "image_url": "media/item14.webp",
+         "image": "item14.webp"
+      }
+   },
+   {
+      "pk":15,
+      "model":"products.product",
+      "fields": {
+         "sku": "SEAS00000001",
+         "name": "Holiday Spice Candle",
+         "description": "A seasonal candle with the scent of holiday spices.",
+         "price":16.99,
+         "category":10,
+         "rating":4.7,
+         "image_url": "media/item15.webp",
+         "image": "item15.webp"
+      }
+   },
+   {
+      "pk":16,
+      "model":"products.product",
+      "fields": {
+         "sku": "NEW00000001",
+         "name": "New Rose Quartz Candle",
+         "description": "A new arrival featuring a rose quartz charm on a floral candle.",
+         "price":18.99,
+         "category":11,
+         "rating":4.9,
+         "image_url": "media/item16.webp",
+         "image": "item16.webp"
+      }
+   },
+   {
+      "pk":17,
+      "model":"products.product",
+      "fields": {
+         "sku": "CLRN00000001",
+         "name": "Lavender Bliss Candle - Clearance",
+         "description": "Lavender-scented candle, now at a special clearance price.",
+         "price":10.99,
+         "category":12, 
+         "rating":4.6,
+         "image_url": "media/item17.webp",
+         "image": "item17.webp"
+      }
+   },
+   {
+      "pk":18,
+      "model":"products.product",
+      "fields": {
+         "sku": "PRSN00000002",
+         "name": "Custom Message Charm",
+         "description": "A charm with a custom message engraving, perfect for gifts.",
+         "price":15.99,
+         "category":8, 
+         "rating":4.8,
+         "image_url": "media/item18.webp",
+         "image": "item18.webp"
+      }
+   }
 ]
