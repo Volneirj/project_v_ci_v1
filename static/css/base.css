@@ -62,7 +62,7 @@ body {
 }
 
 .bg-black {
-    background: #000 !important;
+    background: #cd0e0e !important;
 }
 
 a.category-badge>span.badge:hover {
@@ -176,9 +176,6 @@ a.category-badge>span.badge:hover {
         height: calc(100vh - 116px);
     }
 }
-
-
-
 
 /* overlay  settings */
 .overlay {
