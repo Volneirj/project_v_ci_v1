@@ -3,6 +3,8 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Favicon link -->
+    <link rel="icon" href="{% static 'favicon/favicon.ico' %}" type="image/x-icon">
 
     {% block meta %}
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -84,7 +86,7 @@
                     </li>
                     <li class="list-inline-item">
                         <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
-                            <div class="text-center">
+                            <div class="text-center text-black">
                                 <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                                 <p class="my-0">
                                     {% if grand_total %}
