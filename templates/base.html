@@ -35,7 +35,7 @@
     <title>Charmed & Crafted {% block extra_title %}{% endblock %}</title>
 </head>
 
-<body>
+<body {% if request.resolver_match.url_name == "home" %}class="homepage-background"{% endif %}>
     <header class="container-fluid fixed-top">
         <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
@@ -110,7 +110,7 @@
         </div>
         <div id="delivery-banner" class="row text-center">
             <div class="col bg-black text-white">
-                <h4 class="logo-font my-1">Free delivery on orders over ${{ free_shipping_threshold }}!</h4>                
+                <h4 class="logo-font my-1">Free delivery on orders over ${{ free_delivery_threshold }}!</h4>                
             </div>            
         </div>
     </header>
@@ -128,6 +128,8 @@
     {% block postloadjs %}
     {% endblock %}
 
-    
+   
+       
   </body>
+
 </html>
