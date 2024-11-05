@@ -62,7 +62,8 @@ body {
 }
 
 .bg-black {
-    background: #cd0e0e !important;
+    background: #2f4a7a !important;
+    color: white;
 }
 
 a.category-badge>span.badge:hover {
@@ -78,7 +79,9 @@ a.category-badge>span.badge:hover {
     right: 10px;
 }
 
-.btt-link {
+.btt-link,
+.update-link,
+.remove-item {
     cursor: pointer;
 }
 
@@ -88,7 +91,7 @@ a.category-badge>span.badge:hover {
 
 /* Footer Styles */
 .footer {
-    background-color: #2f4a7a;
+    background-color: #333333;
     color: #ffffff;
     font-family: 'Lato', sans-serif;
 }
@@ -179,7 +182,7 @@ a.category-badge>span.badge:hover {
 
 /* overlay  settings */
 .overlay {
-    background: rgba(216, 121, 248, 0.5);
+    background: #f7f7f7;
     padding: 40px;
     text-align: center;
     border-radius: 10px;
