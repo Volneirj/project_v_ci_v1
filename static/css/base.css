@@ -4,7 +4,7 @@ html {
 
 body {
     body {
-        color: #555;
+        color: #ffffff;
         font-family: 'Lato';
     }
 }
@@ -80,6 +80,10 @@ a.category-badge>span.badge:hover {
 
 .btt-link {
     cursor: pointer;
+}
+
+.product-details-container {
+    color: #000;
 }
 
 /* Footer Styles */
@@ -178,7 +182,7 @@ a.category-badge>span.badge:hover {
 
 /* overlay  settings */
 .overlay {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(216, 121, 248, 0.5);
     padding: 40px;
     text-align: center;
     border-radius: 10px;
