@@ -3,7 +3,6 @@ boto3==1.35.46
 botocore==1.35.46
 certifi==2024.8.30
 charset-normalizer==3.4.0
-dj-database-url==2.3.0
 Django==3.2.25
 django-allauth==65.0.2
 django-countries==7.6.1
