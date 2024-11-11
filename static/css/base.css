@@ -53,6 +53,10 @@ body {
     color: white;
 }
 
+.btn {
+    font-weight: 600;
+}
+
 .text-black {
     color: #000 !important;
 }
@@ -263,6 +267,7 @@ a.category-badge>span.badge:hover {
 }
 
 .overlay p {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin: 20px 0 30px;
+    font-weight: 400;
 }
