@@ -133,9 +133,9 @@ if config('DEBUG', default=False, cast=bool):
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-elif 'DATABASE_URL' in os.environ:
+elif config('DATABASE_URL', default=None) is not None:
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+        'default': dj_database_url.parse(config('DATABASE_URL'))
     }
 else:
     DATABASES = {
