@@ -222,3 +222,4 @@ STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = config('STRIPE_WH_SECRET', '')
 DEFAULT_FROM_EMAIL = 'charmedandcrafted@example.com'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
