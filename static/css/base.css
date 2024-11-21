@@ -102,7 +102,20 @@ a.category-badge>span.badge:hover {
 }
 
 .product-details-container {
+    padding-top: 5px;
+    padding-bottom: 5px;
     color: #000;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    max-height: 80vh;
+    min-width: 350px;
+}
+
+.image-container {
+    max-height: 80vh;
+    max-width: 500px;
 }
 
 /* Footer Styles */
@@ -329,6 +342,37 @@ a.category-badge>span.badge:hover {
     border-radius: 0;
 }
 
+/* overlay  settings */
+.overlay {
+    background: #fae1fa;
+    padding: 40px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #060606;
+    min-height: 80vh;
+}
+
+.overlay h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.overlay p {
+    font-size: 1.5rem;
+    margin: 20px 0 30px;
+    font-weight: 400;
+}
+
+.clearover {
+    background: #ffffff !important;
+    
+}
+
+.keepshopping {
+    background: #fae1fa !important;
+}
+
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
@@ -351,16 +395,30 @@ a.category-badge>span.badge:hover {
         width: 100%;
         margin-bottom: 10px;
     }
+    .product-details-container {
+        max-width: 500px;
+        max-height: 80vh;
+        min-width: 250px;
+    }
+}
+
+/* Responsive Padding Adjustments */
+@media (max-width: 350px) {
+    .product-details-container{
+        min-width: 230px;
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */
 @media (max-width: 991px) {
     .header-container {
-        padding-top: 116px;
+        padding-top: 106px;
     }
 
     body {
-        height: calc(100vh - 116px);
+        height: calc(100vh - 106px);
     }
 
     .display-4.logo-font.text-black {
@@ -400,29 +458,3 @@ a.category-badge>span.badge:hover {
     }
 }
 
-/* overlay  settings */
-.overlay {
-    background: #fae1fa;
-    padding: 40px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    color: #060606;
-    min-height: 80vh;
-}
-
-.overlay h1 {
-    font-size: 3rem;
-    margin: 0;
-}
-
-.overlay p {
-    font-size: 1.5rem;
-    margin: 20px 0 30px;
-    font-weight: 400;
-}
-
-.clearover {
-    background: #ffffff !important;
-    
-}
