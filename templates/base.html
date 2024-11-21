@@ -140,11 +140,13 @@
 
     {% block page_header %}
     {% endblock %}
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>   
+    
 
-    {% block content %}
-    {% endblock %}
-
-    <footer class="footer py-5">
+    <footer class="footer py-5 container-fluid">
         <div class="container">
             <div class="row">
                 <!-- Column 1: Explore Links -->

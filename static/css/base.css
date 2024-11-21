@@ -1,12 +1,20 @@
-html {
+html, body {
     height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 body {
-    body {
-        color: #ffffff;
-        font-family: 'Lato';
-    }
+    height: 100%;
+    color: #ffffff;
+    font-family: 'Lato';
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 }
 
 hr {
@@ -98,6 +106,16 @@ a.category-badge>span.badge:hover {
 }
 
 /* Footer Styles */
+
+.footer {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    margin-top: auto;
+}
+
 .footer {
     background-color: #333333;
     color: #ffffff;
@@ -345,7 +363,7 @@ a.category-badge>span.badge:hover {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     color: #060606;
-    min-height: 1000px;
+    min-height: 80vh;
 }
 
 .overlay h1 {
