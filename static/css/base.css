@@ -242,7 +242,8 @@ a.category-badge>span.badge:hover {
 
 .allauth-form-inner-content p {
     margin-top: 1.5rem; /* mt-4 */
-    color: #6c757d; /* text-secondary */
+    color: #5a5656; /* text-secondary */
+    font-weight: 00;
 }
 
 .allauth-form-inner-content input {
@@ -292,6 +293,9 @@ a.category-badge>span.badge:hover {
 	color: #0146f0; /* text-info */
 }
 
+#hint_id_password1 {
+    color: #000 !important;
+}
 /* Product Form */
 
 .btn-file {
