@@ -304,7 +304,7 @@ a.category-badge>span.badge:hover {
 }
 
 .rounded-0 {
-    border: 1px solid black;
+    border: 1px solid black !important;
 }
 
 .btn-file input[type="file"] {
