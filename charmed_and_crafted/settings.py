@@ -188,7 +188,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-if 'USE_AWS' in os.environ:
+if config('USE_AWS', default=False, cast=bool):
     # Cache control
     AWS_S3_OBJECT_PARAMETERS = {
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
@@ -222,16 +222,19 @@ STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = config('STRIPE_WH_SECRET', '')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-if 'DEVELOPMENT' in os.environ:
+print(config('DEVELOPMENT'))
+print(config('EMAIL_HOST_PASS'))
+if config('DEVELOPMENT', default=False, cast=bool):
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'charmedandcrafted@example.com'
 else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    print("test")
+    EMAIL_BACKEND = 'custom_email_backend.CustomEmailBackend'
     EMAIL_USE_TLS = True
     EMAIL_PORT = 587
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_HOST_USER = config('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASS')
-    DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER')
+    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 

@@ -303,6 +303,10 @@ a.category-badge>span.badge:hover {
     overflow: hidden;
 }
 
+.rounded-0 {
+    border: 1px solid black;
+}
+
 .btn-file input[type="file"] {
     position: absolute;
     top: 0;
