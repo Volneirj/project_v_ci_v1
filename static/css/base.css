@@ -259,15 +259,6 @@ input[type=number] {
     overflow-y: auto;
 }
 
-/* -------------------------------- Media Queries */
-
-/* Slightly larger container on xl screens */
-@media (min-width: 1200px) {
-    .container {
-        max-width: 80%;
-    }
-}
-
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {
@@ -445,6 +436,13 @@ input[type=number] {
 
 }
 
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+}
+
 /* Responsive Padding Adjustments */
 @media (max-width: 768px) {
     .footer .form-inline input,
@@ -465,6 +463,15 @@ input[type=number] {
         min-width: 230px;
         padding-left: 0;
         padding-right: 0;
+    }
+
+    .nopadding {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    #bagcontainer img{
+        display: none;
     }
 }
 
