@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import handler404
+from .views import handler404, handler500 # pylint: disable=unused-import
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +28,5 @@ urlpatterns = [
     path('checkout/', include('checkout.urls')),
     path('profile/', include('profiles.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-handler404 = 'charmed_and_crafted.views.handler404'
-handler500 = 'charmed_and_crafted.views.handler500'
-    
+handler404 = 'charmed_and_crafted.views.handler404' # pylint: disable=invalid-name
+handler500 = 'charmed_and_crafted.views.handler500' # pylint: disable=invalid-name

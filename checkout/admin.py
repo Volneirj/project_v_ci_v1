@@ -3,11 +3,24 @@ from .models import Order, OrderLineItem
 
 
 class OrderLineItemAdminInline(admin.TabularInline):
+    """
+    Inline admin configuration for OrderLineItem.
+
+    Allows managing OrderLineItem objects 
+    directly from the Order admin view.
+    """
     model = OrderLineItem
     readonly_fields = ('lineitem_total',)
 
 
 class OrderAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for the Order model.
+
+    Includes inline OrderLineItem management, 
+    readonly fields, and a custom layout
+    for the admin detail and list views.
+    """
     inlines = (OrderLineItemAdminInline,)
 
     readonly_fields = ('order_number', 'date',
