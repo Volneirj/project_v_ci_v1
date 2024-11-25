@@ -421,15 +421,7 @@ input[type=number] {
     .header-container {
         padding-top: 164px;
     }
-
-    .decrement-qty {
-        margin-left: 5rem;
-    }
-    
-    .increment-qty {
-        margin-right: 5rem;
-    }
-    
+ 
     .qty_input {
         text-align: center;
     }
@@ -468,10 +460,6 @@ input[type=number] {
     .nopadding {
         padding-left: 0px !important;
         padding-right: 0px !important;
-    }
-
-    #bagcontainer img{
-        display: none;
     }
 }
 
@@ -522,4 +510,13 @@ input[type=number] {
     }
 }
 
+@media (min-width: 1500px) {
+    .decrement-qty {
+        margin-left: 5rem;
+    }
+    
+    .increment-qty {
+        margin-right: 5rem;
+    }
 
+}

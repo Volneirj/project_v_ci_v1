@@ -54,8 +54,7 @@ INSTALLED_APPS = [
 
     # Other
     'crispy_forms',
-    'storages',
-    
+    'storages',  
 ]
 
 MIDDLEWARE = [
@@ -233,5 +232,3 @@ else:
     EMAIL_HOST_USER = config('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
