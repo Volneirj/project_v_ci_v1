@@ -23,26 +23,30 @@ class StripeWebHandler:
         """Send the user a confirmation email"""
         try:
             cust_email = order.email
+
             subject = render_to_string(
                 'checkout/confirmation_emails/confirmation_email_subject.txt',
                 {'order': order}
-            )
+            ).strip()
+
             body = render_to_string(
                 'checkout/confirmation_emails/confirmation_email_body.txt',
                 {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL}
             )
 
             send_mail(
-                subject.strip(),  # Ensure no leading/trailing spaces
+                subject,
                 body,
                 settings.DEFAULT_FROM_EMAIL,
                 [cust_email],
-                fail_silently=False,  # Fail explicitly for debugging
+                fail_silently=False,
             )
         except Exception as e:
-            # Log or print the exception for debugging
-            print(f"Error sending email: {e}")
-
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(
+                f"Error sending confirmation email for order {order.order_number}: {e}")
+            pass
 
     def _get_stripe_charge_and_details(self, intent):
         """Retrieve charge details from Stripe"""
@@ -62,13 +66,14 @@ class StripeWebHandler:
             try:
                 profile = UserProfile.objects.get(user__username=username)  # pylint: disable=E1101
                 if save_info:
-                    profile.default_phone_number = shipping_details.phone
-                    profile.default_country = shipping_details.address.country
-                    profile.default_postcode = shipping_details.address.postal_code
-                    profile.default_town_or_city = shipping_details.address.city
-                    profile.default_street_address1 = shipping_details.address.line1
-                    profile.default_street_address2 = shipping_details.address.line2
-                    profile.default_county = shipping_details.address.state
+                    address = shipping_details['address']  # Extract the dictionary
+                    profile.default_phone_number = shipping_details.get('phone')
+                    profile.default_country = address.get('country')
+                    profile.default_postcode = address.get('postal_code')
+                    profile.default_town_or_city = address.get('city')
+                    profile.default_street_address1 = address.get('line1')
+                    profile.default_street_address2 = address.get('line2')
+                    profile.default_county = address.get('state')
                     profile.save()
                 return profile
             except ObjectDoesNotExist:
@@ -128,9 +133,14 @@ class StripeWebHandler:
         """Handle the payment_intent.succeeded webhook from Stripe"""
         intent = event.data.object
         pid = intent.id
-        bag = intent.metadata.bag
-        save_info = intent.metadata.save_info
+        bag = intent.metadata.get('bag', None)
+        save_info = intent.metadata.get('save_info', 'false')  # Default to 'false'
 
+        if not bag:
+            return HttpResponse(
+                content="Webhook received but 'bag' metadata is missing.",
+                status=400,
+            )
         # Retrieve charge and details
         try:
             (
@@ -142,9 +152,9 @@ class StripeWebHandler:
             return HttpResponse(content=str(e), status=500)
 
         # Clean shipping details
-        shipping_details.address = {
+        shipping_details['address'] = {
             field: (value if value != "" else None)
-            for field, value in shipping_details.address.items()
+            for field, value in shipping_details['address'].items()
         }
 
         # Update user profile
@@ -154,20 +164,21 @@ class StripeWebHandler:
 
         # Consolidate order search parameters
         order_search_params = {
-            "full_name__iexact": shipping_details.name,
-            "email__iexact": billing_details.email,
-            "phone_number__iexact": shipping_details.phone,
-            "country__iexact": shipping_details.address.country,
-            "postcode__iexact": shipping_details.address.postal_code,
-            "town_or_city__iexact": shipping_details.address.city,
-            "street_address1__iexact": shipping_details.address.line1,
-            "street_address2__iexact": shipping_details.address.line2,
-            "county__iexact": shipping_details.address.state,
+            "full_name__iexact": shipping_details['name'],
+            "email__iexact": billing_details['email'],
+            "phone_number__iexact": shipping_details.get('phone'),
+            "country__iexact": shipping_details['address'].get('country'),
+            "postcode__iexact": shipping_details['address'].get('postal_code'),
+            "town_or_city__iexact": shipping_details['address'].get('city'),
+            "street_address1__iexact": shipping_details['address'].get('line1'),
+            "street_address2__iexact": shipping_details['address'].get('line2'),
+            "county__iexact": shipping_details['address'].get('state'),
             "grand_total": grand_total,
             "original_bag": bag,
             "stripe_pid": pid,
         }
-
+                
+        
         # Try to find an existing order
         order = self._find_existing_order(order_search_params)
         if order:

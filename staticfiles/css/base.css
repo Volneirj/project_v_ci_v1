@@ -174,6 +174,23 @@ a.category-badge>span.badge:hover {
     color: #ddd;
 }
 
+/* Control quantity input size */
+#id_qty_2 #id_qty_11{
+    min-width: 50px;
+    max-width: 70px;
+}
+
+.qty_input {
+    text-align: center;
+}
+
+/* Remove arrows in Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+
 /* ------------------------------- bootstrap toasts */
 
 .message-container {
@@ -240,15 +257,6 @@ a.category-badge>span.badge:hover {
     height: 100px;
     overflow-x: hidden;
     overflow-y: auto;
-}
-
-/* -------------------------------- Media Queries */
-
-/* Slightly larger container on xl screens */
-@media (min-width: 1200px) {
-    .container {
-        max-width: 80%;
-    }
 }
 
 /* Allauth form formatting */
@@ -373,6 +381,33 @@ a.category-badge>span.badge:hover {
     background: #fae1fa !important;
 }
 
+/* Completely remove arrows for number inputs in Webkit browsers (Chrome, Safari, Edge) */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+
+/* Control quantity input size */
+#id_qty_2{
+    min-width: 50px;
+    max-width: 60px;
+}
+
+/* Remove arrows in Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield; /* Fallback for modern browsers */
+}
+
+.input-group {
+    display: flex;
+    align-items: left;
+    justify-content: center;
+}
+
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
@@ -385,6 +420,32 @@ a.category-badge>span.badge:hover {
 
     .header-container {
         padding-top: 164px;
+    }
+ 
+    .qty_input {
+        text-align: center;
+    }
+
+    .order-confirmation-wrapper {
+        text-align: center;
+        margin: 0 auto;
+        width: fit-content;
+    }
+
+    .wrap-text {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        text-align: left; 
+    }
+
+
+}
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
     }
 }
 
@@ -403,12 +464,26 @@ a.category-badge>span.badge:hover {
 }
 
 /* Responsive Padding Adjustments */
-@media (max-width: 350px) {
+@media (max-width: 400px) {
     .product-details-container{
         min-width: 230px;
         padding-left: 0;
         padding-right: 0;
     }
+
+    .nopadding {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .wrap-order-number {
+        word-wrap: break-word;
+        word-break: break-all;
+        overflow-wrap: break-word;
+        white-space: normal; 
+    }
+    
+
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */
@@ -450,7 +525,7 @@ a.category-badge>span.badge:hover {
     }
 
     .increment-qty, .decrement-qty {
-        padding: .25rem .5rem !important;
+        padding: .20rem .4rem !important;
     }
 
     .overlay p {
@@ -458,3 +533,13 @@ a.category-badge>span.badge:hover {
     }
 }
 
+@media (min-width: 1500px) {
+    .decrement-qty {
+        margin-left: 5rem;
+    }
+    
+    .increment-qty {
+        margin-right: 5rem;
+    }
+
+}

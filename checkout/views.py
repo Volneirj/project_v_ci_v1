@@ -75,33 +75,45 @@ def handle_get_checkout(request, stripe_secret_key):
     """
     Handle GET logic for checkout.
     """
+    # Get the shopping bag from the session
     bag = request.session.get('bag', {})
     if not bag:
         messages.error(request, "There's nothing in your bag at the moment.")
         return redirect(reverse('products'))
 
+    # Calculate the current bag totals
     current_bag = bag_contents(request)
     total = current_bag['grand_total']
     stripe_total = round(total * 100)
+
+    # Create a PaymentIntent with metadata
     stripe.api_key = stripe_secret_key
+    
     intent = stripe.PaymentIntent.create(
         amount=stripe_total,
         currency=settings.STRIPE_CURRENCY,
+        metadata={
+            'bag': json.dumps(request.session.get('bag', {})),  # Include bag
+            'save_info': request.POST.get('save_info', 'false'),  # Include save_info
+            'username': request.user.username if request.user.is_authenticated else 'AnonymousUser',
+        },
     )
 
+    # Initialize the order form
     order_form = _initialize_order_form(request)
 
+    # Get the Stripe public key
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     if not stripe_public_key:
         messages.warning(
             request, 'Stripe public key is missing. Did you forget to set it in your environment?')
 
+    # Render the checkout page with context
     return render(request, 'checkout/checkout.html', {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     })
-
 
 def checkout_success(request, order_number):
     """

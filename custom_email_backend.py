@@ -6,7 +6,9 @@ class CustomEmailBackend(EmailBackend):
         if self.connection:
             return False
         try:
-            self.connection = self.connection_class(self.host, self.port, timeout=self.timeout)
+            self.connection = self.connection_class(
+                self.host, self.port, timeout=self.timeout
+                )
             self.connection.ehlo()
             if self.use_tls:
                 self.connection.starttls() 
