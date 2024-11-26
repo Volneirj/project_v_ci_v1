@@ -3,7 +3,16 @@ from .models import Order
 
 
 class OrderForm(forms.ModelForm):
-    class Meta:
+    """
+    A form for the Order model.
+
+    This form includes placeholders, custom styling, and removes
+    auto-generated labels to enhance user experience.
+    """
+    class Meta: # pylint: disable=too-few-public-methods
+        """
+        Meta class to specify the model and fields for the form.
+        """
         model = Order
         fields = ('full_name', 'email', 'phone_number',
                   'street_address1', 'street_address2',

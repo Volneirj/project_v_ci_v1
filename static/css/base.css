@@ -426,6 +426,20 @@ input[type=number] {
         text-align: center;
     }
 
+    .order-confirmation-wrapper {
+        text-align: center;
+        margin: 0 auto;
+        width: fit-content;
+    }
+
+    .wrap-text {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        text-align: left; 
+    }
+
+
 }
 
 /* Slightly larger container on xl screens */
@@ -461,6 +475,15 @@ input[type=number] {
         padding-left: 0px !important;
         padding-right: 0px !important;
     }
+
+    .wrap-order-number {
+        word-wrap: break-word;
+        word-break: break-all;
+        overflow-wrap: break-word;
+        white-space: normal; 
+    }
+    
+
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */
