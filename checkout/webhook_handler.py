@@ -1,5 +1,13 @@
+"""
+Webhook Handler from the Boutique Ado walkthrough.
+
+This module contains functions to handle webhook events for payment processing.
+Improvements have been made to include additional features and code refactoring
+for better readability, maintainability, and extensibility.
+"""
 import json
 import time
+import logging
 
 import stripe
 from django.http import HttpResponse
@@ -42,11 +50,11 @@ class StripeWebHandler:
                 fail_silently=False,
             )
         except Exception as e:
-            import logging
             logger = logging.getLogger(__name__)
             logger.error(
-                f"Error sending confirmation email for order {order.order_number}: {e}")
-            pass
+                "Error sending confirmation email for order %s: %s",
+                order.order_number,e
+                )
 
     def _get_stripe_charge_and_details(self, intent):
         """Retrieve charge details from Stripe"""
@@ -177,8 +185,7 @@ class StripeWebHandler:
             "original_bag": bag,
             "stripe_pid": pid,
         }
-                
-        
+
         # Try to find an existing order
         order = self._find_existing_order(order_search_params)
         if order:

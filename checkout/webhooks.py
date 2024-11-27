@@ -1,11 +1,17 @@
+"""
+webhooks.py from the Boutique Ado walkthrough.
+
+Refactored for improved readability, maintainability, and extensibility.
+"""
+import logging
+import stripe
+
 from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 
 from checkout.webhook_handler import StripeWebHandler
-
-import stripe
 
 @require_POST
 @csrf_exempt
@@ -20,18 +26,23 @@ def webhook(request):
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
     event = None
 
+    logger = logging.getLogger(__name__)
+
     try:
         event = stripe.Webhook.construct_event(
         payload, sig_header, wh_secret
         )
-    except ValueError as e:
+    except ValueError:
         # Invalid payload
+        logger.warning("Invalid payload received.")
         return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
+    except stripe.error.SignatureVerificationError:
         # Invalid signature
+        logger.warning("Invalid Stripe signature.")
         return HttpResponse(status=400)
     except Exception as e:
-        return HttpResponse(content=e, status=400)
+        logger.error("Unexpected error occurred: %s", e)
+        return HttpResponse(content="An unexpected error occurred.", status=400)
 
     # Set up a webhook handler
     handler = StripeWebHandler(request)
