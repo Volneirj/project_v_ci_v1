@@ -259,6 +259,11 @@ input[type=number] {
     overflow-y: auto;
 }
 
+
+.img-fluid-bag{
+    max-height: 20vh !important;
+}
+
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {

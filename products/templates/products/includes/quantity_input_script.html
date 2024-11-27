@@ -1,11 +1,9 @@
 <script type="text/javascript">
 
 $(document).ready(function () {
-    console.log("Script loaded and running!");
 
     // Disable +/- buttons based on quantity
     function handleEnableDisable(itemId) {
-        console.log("handleEnableDisable called for itemId:", itemId);
         var input = $(`.qty_input[data-item_id="${itemId}"]`);
         var currentValue = parseInt(input.val());
         var decrementButton = $(`.decrement-qty[data-item_id="${itemId}"]`);
@@ -24,7 +22,6 @@ $(document).ready(function () {
     // Update quantity on change
     $(document).on('change', '.qty_input', function () {
         var itemId = $(this).data('item_id');
-        console.log("Quantity input changed for itemId:", itemId);
         handleEnableDisable(itemId);
     });
 
