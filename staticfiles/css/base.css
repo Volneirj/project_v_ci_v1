@@ -1,3 +1,4 @@
+/* Global Styles */
 html, body {
     height: 100%;
     margin: 0;
@@ -21,13 +22,14 @@ hr {
     border-top: 3px solid rgba(0, 0, 0, .1);
 }
 
+/* Homepage Background */
 .homepage-background {
     background: url('/media/homepage_background.webp') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px);
 }
 
-/* from Bulma */
+/* Utility Classes */
 .icon {
     align-items: center;
     display: inline-flex;
@@ -77,6 +79,7 @@ hr {
     border: 1px solid black !important;
 }
 
+/* Background Colors */
 .bg-black {
     background: #2f4a7a !important;
     color: white;
@@ -87,6 +90,7 @@ a.category-badge>span.badge:hover {
     color: #fff !important;
 }
 
+/* Back to Top Button */
 .btt-button {
     height: 42px;
     width: 42px;
@@ -101,6 +105,7 @@ a.category-badge>span.badge:hover {
     cursor: pointer;
 }
 
+/* Product Details */
 .product-details-container {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -119,7 +124,6 @@ a.category-badge>span.badge:hover {
 }
 
 /* Footer Styles */
-
 .footer {
     width: 100%;
     max-width: none;
@@ -174,14 +178,11 @@ a.category-badge>span.badge:hover {
     color: #ddd;
 }
 
-/* Control quantity input size */
-#id_qty_2 #id_qty_11{
-    min-width: 50px;
-    max-width: 70px;
-}
-
+/* Quantity Input Styles */
 .qty_input {
     text-align: center;
+    min-width: 50px;
+    max-width: 70px;
 }
 
 /* Remove arrows in Firefox */
@@ -190,9 +191,7 @@ input[type=number] {
     appearance: textfield;
 }
 
-
-/* ------------------------------- bootstrap toasts */
-
+/* Toast Notifications */
 .message-container {
     position: fixed;
     top: 72px;
@@ -259,12 +258,16 @@ input[type=number] {
     overflow-y: auto;
 }
 
-/* Allauth form formatting */
 
+.img-fluid-bag{
+    max-height: 20vh !important;
+}
+
+/* Allauth Form */
 .allauth-form-inner-content p {
-    margin-top: 1.5rem; /* mt-4 */
-    color: #5a5656; /* text-secondary */
-    font-weight: 00;
+    margin-top: 1.5rem;
+    color: #5a5656;
+    font-weight: 100;
 }
 
 .allauth-form-inner-content input {
@@ -350,7 +353,7 @@ input[type=number] {
     border-radius: 0;
 }
 
-/* overlay  settings */
+/* Overlay Settings */
 .overlay {
     background: #fff7ff;
     padding: 40px;
@@ -389,26 +392,18 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-
-/* Control quantity input size */
-#id_qty_2{
-    min-width: 50px;
-    max-width: 60px;
-}
-
 /* Remove arrows in Firefox */
 input[type=number] {
     -moz-appearance: textfield;
-    appearance: textfield; /* Fallback for modern browsers */
+    appearance: textfield;
 }
 
 .input-group {
     display: flex;
-    align-items: left;
     justify-content: center;
 }
 
-/* fixed top navbar only on medium and up */
+/* Responsive Adjustments */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
         position: fixed;
