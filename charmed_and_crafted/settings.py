@@ -221,7 +221,7 @@ STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = config('STRIPE_WH_SECRET', '')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-if config('DEVELOPMENT', default=False, cast=bool):
+if config('LOCALEMAIL', default=False, cast=bool):
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'charmedandcrafted@example.com'
 else:
