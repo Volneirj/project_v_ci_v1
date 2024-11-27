@@ -4,7 +4,6 @@ Source of code : Boutiqueado walkthrought.
 Refactored for better readability, maintainability, and compliance with
 Django best practices.
 """
-
 from django.db import models
 
 
