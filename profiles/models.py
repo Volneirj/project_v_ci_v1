@@ -1,3 +1,9 @@
+"""
+Source of code : Boutiqueado walkthrought.
+
+Refactored for better readability, maintainability, and compliance with
+Django best practices.
+"""
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -21,15 +27,15 @@ class UserProfile(models.Model):
     default_country = CountryField(blank_label='Country', null=True, blank=True)
 
     def __str__(self):
-        return self.user.username
+        return self.user.username # pylint: disable=no-member
 
 
 @receiver(post_save, sender=User)
-def create_or_update_user_profile(sender, instance, created, **kwargs):
+def create_or_update_user_profile(sender, instance, created, **kwargs):  # pylint: disable=unused-argument
     """
     Create or update the user profile
     """
     if created:
-        UserProfile.objects.create(user=instance)
+        UserProfile.objects.create(user=instance) # pylint: disable=no-member
     # Existing users: just save the profile
     instance.userprofile.save()

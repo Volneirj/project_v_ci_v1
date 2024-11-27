@@ -1,8 +1,21 @@
+"""
+Source of code : Boutiqueado walkthrought.
+
+Refactored for better readability, maintainability, and compliance with
+Django best practices.
+"""
 from django import forms
 from .models import UserProfile
 
 
 class UserProfileForm(forms.ModelForm):
+    """
+    A form for updating the user's profile information.
+
+    - Dynamically adds placeholders and CSS classes to fields.
+    - Removes auto-generated labels.
+    - Sets autofocus on the first field for better UX.
+    """
     class Meta:
         model = UserProfile
         exclude = ('user',)
