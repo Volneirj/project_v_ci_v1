@@ -1,8 +1,18 @@
+"""
+Source of code : Boutiqueado walkthrought.
+
+Refactored for better readability, maintainability, and compliance with
+Django best practices.
+"""
+
 from django.db import models
 
-# Create your models here.
 
 class Category(models.Model):
+    """
+    Represents a product category, 
+    with an optional friendly name for display purposes.
+    """
 
     class Meta:
         verbose_name_plural= 'Categories'
@@ -11,11 +21,15 @@ class Category(models.Model):
     friendly_name = models.CharField(max_length=254, null = True, blank = True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
     def get_friendly_name(self):
         return self.friendly_name
-    
+
 class Product(models.Model):
+    """
+    Represents a product, linked to a category and with additional details
+    such as price, rating, and optional image fields.
+    """
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.CASCADE)
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
@@ -27,4 +41,4 @@ class Product(models.Model):
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
