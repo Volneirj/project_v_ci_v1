@@ -4,9 +4,10 @@ Source code from Boutique Ado walkthrough.
 Refactored for better readability, maintainability, and compliance with
 Django best practices.
 """
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from checkout.models import Order
 from .models import UserProfile
@@ -19,12 +20,19 @@ def profile(request):
     user_profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
+        email = request.POST.get('email')
         form = UserProfileForm(request.POST, instance=user_profile)
         if form.is_valid():
             form.save()
+        if email and request.user.is_authenticated:
+            user = User.objects.get(id=request.user.id)
+            user.email = email
+            user.save()
             messages.success(request, 'Profile updated successfully')
         else:
             messages.error(request, 'Update failed. Please ensure the form is valid.')
+
+        return redirect('profile')  # Redirect to the profile page after POST
     else:
         form = UserProfileForm(instance=user_profile)
     orders = user_profile.orders.all()

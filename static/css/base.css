@@ -356,7 +356,7 @@ input[type=number] {
 /* Overlay Settings */
 .overlay {
     background: #fff7ff;
-    padding: 40px;
+    padding: 80px 20px 40px 20px;
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -477,8 +477,11 @@ input[type=number] {
         overflow-wrap: break-word;
         white-space: normal; 
     }
-    
 
+    .navbar-toggler {
+        font-size: small;
+    }
+    
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */
