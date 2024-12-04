@@ -176,6 +176,7 @@ class WishlistView(LoginRequiredMixin, APIView):
         messages.success(request, f'{product.name} added to your wishlist!')
         return redirect('wishlist_page')
 
+@login_required
 def remove_from_wishlist(request, item_id):
     """Remove the item from the wishlist"""
 

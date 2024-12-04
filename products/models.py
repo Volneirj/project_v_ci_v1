@@ -47,6 +47,16 @@ class Product(models.Model):
     
 
 class Wishlist(models.Model):
+    """
+    Model representing a user's wishlist.
+
+    Attributes:
+        user (ForeignKey): A reference to the user who owns the wishlist.
+        product (ForeignKey): A reference to the product added to the wishlist.    
+    Meta:
+        unique_together: Ensures the item is not added twice.
+        ordering: Orders wishlist items by creation date in descending order.
+    """
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="wishlists")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="wishlisted_by")
     created_at = models.DateTimeField(auto_now_add=True)
