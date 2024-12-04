@@ -403,6 +403,15 @@ input[type=number] {
     justify-content: center;
 }
 
+/*Wish list Buttom*/
+.red{
+    color: red !important;
+}
+
+.wishlistbt {
+    display: block !important;
+}
+
 /* Responsive Adjustments */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {

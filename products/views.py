@@ -4,14 +4,21 @@ Source code from Boutique Ado walkthrough.
 Refactored for better readability, maintainability, and compliance with
 Django best practices.
 """
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
+
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.db.models.functions import Lower
 
-from .models import Product, Category
+from .models import Product, Category, Wishlist
 from .forms import ProductForm
+from .serializers import WishlistSerializer
 
 
 def all_products(request):
@@ -142,3 +149,48 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
+
+
+class WishlistView(LoginRequiredMixin, APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        """Retrieve user's wishlist"""
+        wishlist_items = Wishlist.objects.filter(user=request.user)
+        serializer = WishlistSerializer(wishlist_items, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        """Add a product to the wishlist."""
+        product_id = request.data.get('product_id')
+        if not product_id:
+            return Response({"error": "Product ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        product = get_object_or_404(Product, id=product_id)
+        if Wishlist.objects.filter(user=request.user, product=product).exists():
+            messages.error(request, "Product is already in your wishlist.")
+            return redirect('product_detail', product_id=product_id)
+
+        Wishlist.objects.create(user=request.user, product=product)
+        messages.success(request, "Product added to your wishlist!")
+        return redirect('wishlist_page')
+
+    def delete(self, request):
+        """Remove a product from the wishlist"""
+        if request.content_type != 'application/json':
+            return Response({"error": "Invalid content type. Use JSON."}, status=status.HTTP_400_BAD_REQUEST)
+
+        product_id = request.data.get('product_id')
+        if not product_id:
+            return Response({"error": "Product ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        wishlist_item = get_object_or_404(Wishlist, user=request.user, product_id=product_id)
+        wishlist_item.delete()
+        return Response({"message": "Product removed from wishlist"}, status=status.HTTP_200_OK)
+    
+
+@login_required
+def wishlist_page(request):
+    """Render the user's wishlist."""
+    wishlist_items = Wishlist.objects.filter(user=request.user).select_related('product')
+    return render(request, 'products/wishlist.html', {'wishlist_items': wishlist_items})

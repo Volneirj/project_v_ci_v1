@@ -1,10 +1,13 @@
 """
-Source of code : Boutiqueado walkthrought.
+Category and products Source of code: 
+Boutiqueado walkthrought.
 
-Refactored for better readability, maintainability, and compliance with
-Django best practices.
+Refactored for better readability, maintainability, 
+and compliance with Django best practices.
+
 """
 from django.db import models
+from django.conf import settings
 
 
 class Category(models.Model):
@@ -16,8 +19,8 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural= 'Categories'
 
-    name = models.CharField(max_length=254)
-    friendly_name = models.CharField(max_length=254, null = True, blank = True)
+    name = models.CharField(max_length=254, unique=True)
+    friendly_name = models.CharField(max_length=254, null = True, blank = True, verbose_name="Friendly Name")
 
     def __str__(self):
         return str(self.name)
@@ -41,3 +44,16 @@ class Product(models.Model):
 
     def __str__(self):
         return str(self.name)
+    
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="wishlists")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="wishlisted_by")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'product')
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.user.username} - {self.product.name}"

@@ -3,7 +3,9 @@ Product URLs settings
 """
 
 from django.urls import path
+from .views import WishlistView, wishlist_page
 from . import views
+
 
 
 urlpatterns = [
@@ -15,4 +17,6 @@ urlpatterns = [
          views.delete_product,
          name='delete_product'
          ),
+    path('wishlist/', WishlistView.as_view(), name='wishlist'),
+    path('wishlist_page/', wishlist_page, name='wishlist_page'),
 ]
