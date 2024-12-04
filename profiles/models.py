@@ -4,12 +4,21 @@ Source of code : Boutiqueado walkthrought.
 Refactored for better readability, maintainability, and compliance with
 Django best practices.
 """
+import pycountry
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from django_countries.fields import CountryField
+
+def get_country_choices():
+    """
+    Generate a list of country choices with a blank label at the top.
+    """
+    choices = [("", "Select your country")]
+    choices += [(country.alpha_2, country.name) for country in pycountry.countries]
+    return choices
 
 
 class UserProfile(models.Model):
@@ -24,7 +33,12 @@ class UserProfile(models.Model):
     default_town_or_city = models.CharField(max_length=40, null=True, blank=True)
     default_county = models.CharField(max_length=80, null=True, blank=True)
     default_postcode = models.CharField(max_length=20, null=True, blank=True)
-    default_country = CountryField(blank_label='Country', null=True, blank=True)
+    default_country = models.CharField(
+        max_length=2,
+        choices=get_country_choices(),
+        blank=True,
+        null=True,
+    )
 
     def __str__(self):
         return self.user.username # pylint: disable=no-member

@@ -195,8 +195,7 @@ def remove_from_wishlist(request, item_id):
     except Exception as e:
         messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)
-    
-    
+
 
 @login_required
 def wishlist_page(request):

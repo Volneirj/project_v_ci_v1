@@ -1,14 +1,32 @@
+"""
+Source of code : Boutiqueado walkthrought.
+
+Replaced django countries for pycountry
+-Easier to implement
+-Doesn’t require database migrations for country data.
+-Doesn’t impose Django-specific constraints or dependencies,
+ 
+Refactored code for better readability, maintainability,
+and compliance with Django best practices.
+"""
 import uuid
+import pycountry
 
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
 
-from django_countries.fields import CountryField
-
 from products.models import Product
 from profiles.models import UserProfile
 
+
+def get_country_choices():
+    """
+    Generate a list of country choices with a blank label at the top.
+    """
+    choices = [("", "Select your country")]
+    choices += [(country.alpha_2, country.name) for country in pycountry.countries]
+    return choices
 
 class Order(models.Model):
     """
@@ -20,7 +38,12 @@ class Order(models.Model):
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
-    country = CountryField(blank_label='Country *', null=False, blank=False)
+    country = models.CharField(
+        max_length=2,
+        choices=get_country_choices(),
+        blank=True,
+        null=True,
+    )
     postcode = models.CharField(max_length=20, null=True, blank=True)
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
