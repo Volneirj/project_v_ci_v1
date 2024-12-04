@@ -72,9 +72,8 @@
                                 </form>
 
                                 <!-- Remove from Wishlist Button -->
-                                <form action="{% url 'wishlist' %}" method="POST">
+                                <form action="{% url 'remove_from_wishlist' item.product.id %}" method="POST">
                                     {% csrf_token %}
-                                    <input type="hidden" name="product_id" value="{{ item.item.product.id }}">
                                     <button type="submit" class="btn btn-danger">X</button>
                                 </form>
                             </div>

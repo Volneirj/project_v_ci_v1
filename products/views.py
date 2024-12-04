@@ -15,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.http import HttpResponse
 
 from .models import Product, Category, Wishlist
 from .forms import ProductForm
@@ -168,25 +169,32 @@ class WishlistView(LoginRequiredMixin, APIView):
 
         product = get_object_or_404(Product, id=product_id)
         if Wishlist.objects.filter(user=request.user, product=product).exists():
-            messages.error(request, "Product is already in your wishlist.")
+            messages.error(request, f'{product.name} is already in your wishlist.')
             return redirect('product_detail', product_id=product_id)
 
         Wishlist.objects.create(user=request.user, product=product)
-        messages.success(request, "Product added to your wishlist!")
+        messages.success(request, f'{product.name} added to your wishlist!')
         return redirect('wishlist_page')
 
-    def delete(self, request):
-        """Remove a product from the wishlist"""
-        if request.content_type != 'application/json':
-            return Response({"error": "Invalid content type. Use JSON."}, status=status.HTTP_400_BAD_REQUEST)
+def remove_from_wishlist(request, item_id):
+    """Remove the item from the wishlist"""
 
-        product_id = request.data.get('product_id')
-        if not product_id:
-            return Response({"error": "Product ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+    try:
+        product = get_object_or_404(Product, pk=item_id)
+        wishlist_item = Wishlist.objects.filter(user=request.user, product=product).first()
 
-        wishlist_item = get_object_or_404(Wishlist, user=request.user, product_id=product_id)
-        wishlist_item.delete()
-        return Response({"message": "Product removed from wishlist"}, status=status.HTTP_200_OK)
+        if wishlist_item:
+            wishlist_item.delete()
+            messages.success(request, f'Removed {product.name} from your wishlist.')
+        else:
+            messages.error(request, f'Error: {product.name} is not in your wishlist.')
+
+        return redirect('wishlist_page')
+
+    except Exception as e:
+        messages.error(request, f'Error removing item: {e}')
+        return HttpResponse(status=500)
+    
     
 
 @login_required
