@@ -4,10 +4,18 @@ Source code from Boutique Ado walkthrough.
 Refactored for better readability, maintainability, and compliance with
 Django best practices.
 """
-from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
+from django.shortcuts import (
+    render,
+    redirect,
+    reverse,
+    HttpResponse,
+    get_object_or_404)
 from django.contrib import messages
+from django.views.decorators.csrf import ensure_csrf_cookie
 from products.models import Product
 
+
+@ensure_csrf_cookie
 def view_bag(request):
     """ A view that renders the bag contents page """
 

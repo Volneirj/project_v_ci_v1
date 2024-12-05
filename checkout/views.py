@@ -1,10 +1,17 @@
 import json
 import stripe
 
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render,
+    redirect,
+    reverse,
+    get_object_or_404,
+    HttpResponse
+)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 from products.models import Product
 from profiles.forms import UserProfileForm
@@ -33,7 +40,7 @@ def cache_checkout_data(request):
             request, 'Sorry, your payment cannot be processed right now. Please try again later.')
         return HttpResponse(content=str(e), status=400)
 
-
+@ensure_csrf_cookie
 def checkout(request):
     """
     Handle checkout requests (GET and POST).

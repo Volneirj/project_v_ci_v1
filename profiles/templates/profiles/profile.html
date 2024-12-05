@@ -30,7 +30,6 @@
                     {% csrf_token %}
                     {{ form|crispy }}
                     <div class="form-group">
-                        <label for="id_email">Email Address</label>
                         <input type="email" name="email" id="id_email" class="form-control" value="{{ user.email }}" required placeholder="E-mail">
                     </div>
                     <button class="btn btn-black rounded-0 text-uppercase float-right">Update Information</button>

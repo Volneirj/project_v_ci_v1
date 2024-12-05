@@ -16,6 +16,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.http import HttpResponse
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 from .models import Product, Category, Wishlist
 from .forms import ProductForm
@@ -72,6 +73,7 @@ def all_products(request):
     return render(request, 'products/products.html', context)
 
 
+@ensure_csrf_cookie
 def product_detail(request, product_id):
     """ A view to show individual product details """
 
@@ -84,6 +86,7 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
+@ensure_csrf_cookie
 @login_required
 def add_product(request):
     """ Add a product to the store """
@@ -176,6 +179,7 @@ class WishlistView(LoginRequiredMixin, APIView):
         messages.success(request, f'{product.name} added to your wishlist!')
         return redirect('wishlist_page')
 
+
 @login_required
 def remove_from_wishlist(request, item_id):
     """Remove the item from the wishlist"""
@@ -197,6 +201,7 @@ def remove_from_wishlist(request, item_id):
         return HttpResponse(status=500)
 
 
+@ensure_csrf_cookie
 @login_required
 def wishlist_page(request):
     """Render the user's wishlist."""

@@ -462,7 +462,7 @@ input[type=number] {
     }
     .product-details-container {
         max-width: 500px;
-        max-height: 80vh;
+        max-height: 90vh;
         min-width: 250px;
     }
 }
