@@ -29,6 +29,13 @@ hr {
     height: calc(100vh - 164px);
 }
 
+/* Ourstory Background */
+.homepage-background {
+    background: url('/media/our_story.webp') no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh - 164px);
+}
+
 /* Utility Classes */
 .icon {
     align-items: center;

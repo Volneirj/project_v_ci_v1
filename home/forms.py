@@ -25,3 +25,51 @@ class SubscriptionForm(forms.ModelForm):
                 'style': 'border-radius: 0;',
             }),
         }
+
+
+
+class ContactUsForm(forms.Form):
+    """
+    A form for users to send inquiries via the Contact Us page.
+    
+    Fields:
+        - name: User's full name.
+        - email: User's email address for responses.
+        - subject: The subject of the inquiry.
+        - message: Detailed message or inquiry from the user.
+    """
+    name = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control mb-3',
+            'placeholder': 'Your Full Name',
+            'style': 'border-radius: 0;',
+        }),
+        label="Name"
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control mb-3',
+            'placeholder': 'Your Email Address',
+            'style': 'border-radius: 0;',
+        }),
+        label="Email"
+    )
+    subject = forms.CharField(
+        max_length=150,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control mb-3',
+            'placeholder': 'Subject',
+            'style': 'border-radius: 0;',
+        }),
+        label="Subject"
+    )
+    message = forms.CharField(
+        widget=forms.Textarea(attrs={
+            'class': 'form-control',
+            'placeholder': 'Your Message',
+            'rows': 5,
+            'style': 'border-radius: 0;',
+        }),
+        label="Message"
+    )
