@@ -30,10 +30,11 @@ hr {
 }
 
 /* Ourstory Background */
-.homepage-background {
+.ourstory-background {
     background: url('/media/our_story.webp') no-repeat center center fixed;
     background-size: cover;
-    height: calc(100vh - 164px);
+    min-height: auto;
+    padding-bottom: 80px;
 }
 
 /* Utility Classes */
