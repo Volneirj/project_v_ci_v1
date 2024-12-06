@@ -194,8 +194,9 @@
                     <div class="col-md-6">
                         <h6 class="text-uppercase font-weight-bold">Stay Connected</h6>
                         <p>Sign up for exclusive offers, new product updates, and inspiration.</p>
-                        <form class="form-inline">
-                            <input type="email" class="form-control mr-2 mb-2 mb-lg-0" placeholder="Enter your email" style="border-radius: 0;">
+                        <form class="form-inline" method="POST" action="{% url 'subscribe' %}">
+                            {% csrf_token %}
+                            {{ subscription_form.email }}
                             <button type="submit" class="btn btn-light" style="border-radius: 0;">Subscribe</button>
                         </form>
                     </div>
