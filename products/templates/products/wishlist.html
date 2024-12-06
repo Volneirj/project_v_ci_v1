@@ -44,7 +44,7 @@
                                 <!-- Add to Bag Button -->
                                 <form action="{% url 'add_to_bag' item.product.id %}" method="POST" class="mr-2">
                                     {% csrf_token %}
-                                    <div class="form-group mx-auto ml-2">
+                                    <div class="form-group hide-on-small-screens mx-auto ml-2">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <button class="decrement-qty btn btn-black rounded-0" 
@@ -68,7 +68,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-black">Add to Bag</button>
+                                    <div class="add-to-bag">
+                                        <!-- Text button for larger screens -->
+                                        <button type="submit" class="btn btn-black d-none d-md-inline">Add to Bag</button>
+                                        
+                                        <!-- Icon button for small screens -->
+                                        <button type="submit" class="btn btn-black d-md-none">
+                                            <i class="fas fa-shopping-bag"></i>
+                                        </button>
+                                    </div>
                                 </form>
 
                                 <!-- Remove from Wishlist Button -->

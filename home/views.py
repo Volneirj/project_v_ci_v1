@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import SubscriptionForm
 
-# Create your views here.
 
 def index(request):
     """

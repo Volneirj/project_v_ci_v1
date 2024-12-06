@@ -462,7 +462,7 @@ input[type=number] {
     }
     .product-details-container {
         max-width: 500px;
-        max-height: 80vh;
+        max-height: 90vh;
         min-width: 250px;
     }
 }
@@ -547,6 +547,32 @@ input[type=number] {
     
     .increment-qty {
         margin-right: 5rem;
+    }
+
+}
+
+/* Wishlist: Adjust font sizes and spacing for small screens */
+@media (max-width: 480px) {
+    .wishlist-item img {
+        width: 80px;
+        height: auto;
+    }
+
+    .wishlist-item p {
+        font-size: 0.9rem; 
+    }
+
+    .wishlist-item .btn {
+        padding: 0.3rem 0.6rem; 
+        font-size: 0.8rem;
+    }
+
+    .wishlist-item .qty_input {
+        width: 50px;
+    }
+
+    .hide-on-small-screens {
+        display: none !important;
     }
 
 }
