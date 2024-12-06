@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.mail import send_mail
 from .forms import SubscriptionForm, ContactUsForm
+from django.conf import settings
 
 
 def index(request):
@@ -53,7 +54,7 @@ def contact_us(request):
                 form.cleaned_data['subject'],
                 form.cleaned_data['message'],
                 form.cleaned_data['email'],
-                ['juniorleasefire@gmail.com'],
+                [settings.EMAIL_HOST_USER],
             )
             messages.success(request, "Your message has been sent. Thank you!")
             form = ContactUsForm()
