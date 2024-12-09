@@ -8,6 +8,9 @@ and compliance with Django best practices.
 """
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User
+from django.db.models import Avg
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Category(models.Model):
@@ -45,6 +48,14 @@ class Product(models.Model):
     def __str__(self):
         return str(self.name)
     
+    @property
+    def average_rating(self):
+        """
+        Calculate and return the average rating for the product based on its reviews.
+        If there are no reviews, return None.
+        """
+        return self.reviews.aggregate(avg_rating=Avg('rating'))['avg_rating']
+    
 
 class Wishlist(models.Model):
     """
@@ -67,3 +78,34 @@ class Wishlist(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.product.name}"
+
+
+class Review(models.Model):
+    """
+    A model to store product reviews, linked to an order line item to ensure the user has purchased the product.
+    """
+    order_line_item = models.ForeignKey(
+        'checkout.OrderLineItem',
+        on_delete=models.CASCADE,
+        related_name='reviews',
+        null=True,
+        blank=True
+    )
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.PositiveSmallIntegerField(
+        default=1,
+        validators=[MinValueValidator(0), MaxValueValidator(5)]
+    )
+    comment = models.TextField(blank=True, null=True)
+    useful_count = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('product', 'user')
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.user.username} review on {self.product.name}"
+    

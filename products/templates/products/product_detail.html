@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom_tags %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -50,7 +51,7 @@
                     </p>
                     {% endif %}
                     {% if product.rating %}
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.average_rating }} / 5</small>
                     {% else %}
                         <small class="text-muted">No Rating</small>
                     {% endif %}
@@ -123,10 +124,91 @@
             </div>
         </div>
     </div>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="text-center mb-4">Customer Reviews</h3>
+            </div>
+        </div>
+        {% if product.reviews.exists %}
+            <div class="row">
+                {% for review in product.reviews.all %}
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <!-- Reviewer Name -->
+                            <h5 class="card-title font-weight-bold">{{ review.user.username }}</h5>
+                            
+                            <p class="mb-2">
+                                {% render_stars review.rating %}
+                            </p>
+                            
+                            <!-- Review Date -->
+                            <p class="text-muted small mb-2">Reviewed on {{ review.created_at|date:"d/m/Y" }}</p>
+                            
+                            <!-- Review Content -->
+                            <p class="card-text">{{ review.comment }}</p>
+                            {% if review.user == request.user %}
+                            <a href="{% url 'delete_review' review.id %}" class="btn btn-sm btn-danger">Delete</a>
+                            {% endif %}
+                        </div>    
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No reviews yet. Be the first to review this product!</p>
+        {% endif %}                
+    </div>
+    <!-- Submit a Review Form -->
+    {% if user.is_authenticated %}
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 mt-4">
+            <h4 class="text-center">Write a Review</h4>
+            <form method="POST" action="{% url 'submit_review' product.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <input
+                        type="range"
+                        id="rating-slider"
+                        name="rating"
+                        min="0"
+                        max="5"
+                        step="1"
+                        value="3"
+                        class="form-control-range"
+                        oninput="updateSliderValue(this.value)"
+                    >
+                    <div class="text-center mt-2">
+                        <span id="slider-value">3</span> / 5
+                    </div>
+                </div>
+                {{ review_form.comment }}
+                <div class="d-flex justify-content-center mt-3">
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% else %}
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6 mt-4 text-center">
+                <p><a href="{% url 'account_login' %}">Log in</a> to write a review.</p>
+            </div>
+        </div>
+    {% endif %}
+    </div>
 </div>
 {% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
+{% include 'products/includes/useful_script.html' %}
+<script>
+    function updateSliderValue(value) {
+        document.getElementById("slider-value").textContent = value;
+    }
+</script>
 {% endblock %}

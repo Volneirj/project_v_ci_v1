@@ -19,7 +19,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 from .models import Product, Category, Wishlist
-from .forms import ProductForm
+from .forms import ProductForm, ReviewForm
 from .serializers import WishlistSerializer
 
 
@@ -78,9 +78,11 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
+    review_form = ReviewForm()
 
     context = {
         'product': product,
+        'review_form': review_form,
     }
 
     return render(request, 'products/product_detail.html', context)
@@ -207,3 +209,4 @@ def wishlist_page(request):
     """Render the user's wishlist."""
     wishlist_items = Wishlist.objects.filter(user=request.user).select_related('product')
     return render(request, 'products/wishlist.html', {'wishlist_items': wishlist_items})
+
