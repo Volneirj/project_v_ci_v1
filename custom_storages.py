@@ -21,7 +21,6 @@ class StaticStorage(S3Boto3Storage):
     default_acl = 'public-read'
 
     def _save(self, name, content):
-        print(f"Attempting to upload: {name}")
         return super()._save(name, content)
 
 
@@ -41,5 +40,4 @@ class MediaStorage(S3Boto3Storage):
     default_acl = 'public-read'
 
     def _save(self, name, content):
-        print(f"Media file being saved: {name}")
         return super()._save(name, content)
