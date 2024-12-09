@@ -154,7 +154,6 @@
                         <ul class="list-unstyled">
                             <li><a href="{% url 'products' %}" class="footer-link">Shop</a></li>
                             <li><a href="{% url 'our_story' %}" class="footer-link">Our Story</a></li>
-                            <li><a href="#" class="footer-link">Crafting Process</a></li>
                             <li><a href="{% url 'contact_us' %}" class="footer-link">Contact Us</a></li>
                         </ul>
                     </div>
@@ -163,10 +162,10 @@
                     <div class="col-md-3">
                         <h6 class="text-uppercase font-weight-bold">Customer Care</h6>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="footer-link">Shipping & Returns</a></li>
-                            <li><a href="#" class="footer-link">FAQs</a></li>
-                            <li><a href="#" class="footer-link">Privacy Policy</a></li>
-                            <li><a href="#" class="footer-link">Terms & Conditions</a></li>
+                            <li><a href="{% url 'shipping_returns' %}" class="footer-link">Shipping & Returns</a></li>
+                            <li><a href="{% url 'faqs' %}" class="footer-link">FAQs</a></li>
+                            <li><a href="{% url 'privacy_policy' %}" class="footer-link">Privacy Policy</a></li>
+                            <li><a href="{% url 'terms_conditions' %}" class="footer-link">Terms & Conditions</a></li>
                         </ul>
                     </div>
 
@@ -174,7 +173,7 @@
                     <div class="col-md-3">
                         <h6 class="text-uppercase font-weight-bold">Get Involved</h6>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="footer-link">WorkShops</a></li>
+                            <li><a href="{% url 'workshops' %}" class="footer-link">WorkShops</a></li>
                         </ul>
                     </div>
 
