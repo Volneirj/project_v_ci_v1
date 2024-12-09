@@ -27,7 +27,7 @@ if not SECRET_KEY:
     raise ValueError("The SECRET_KEY environment variable is not set.")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUGS', default=False, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['charmedandcrafted-65c7adf04e90.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -126,7 +126,7 @@ WSGI_APPLICATION = 'charmed_and_crafted.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-if config('DEBUGS', default=False, cast=bool):
+if config('DEBUG', default=False, cast=bool):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -188,9 +188,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-print(config('AWS', default=False, cast=bool))
-
-if config('AWS', default=False, cast=bool):
+if config('LOAD_FILES_AWS', default=False, cast=bool):
     # Cache control
     AWS_S3_OBJECT_PARAMETERS = {
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
