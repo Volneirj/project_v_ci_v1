@@ -98,7 +98,7 @@ class Review(models.Model):
         default=1,
         validators=[MinValueValidator(0), MaxValueValidator(5)]
     )
-    comment = models.TextField(blank=True, null=True)
+    comment = models.TextField(max_length=300, blank=True, null=True)
     useful_count = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
