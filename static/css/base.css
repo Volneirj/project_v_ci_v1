@@ -272,6 +272,9 @@ input[type=number] {
 }
 
 /* Allauth Form */
+ul {
+    list-style: none;
+}
 .allauth-form-inner-content p {
     margin-top: 1.5rem;
     color: #5a5656;
@@ -420,6 +423,16 @@ input[type=number] {
     display: block !important;
 }
 
+/*Review product */
+.card-shadow{
+    box-shadow: #000;
+    border-radius: 10%;
+}
+
+.small-text {
+    font-size: 0.5em !important;
+}
+
 /* Responsive Adjustments */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
@@ -450,8 +463,6 @@ input[type=number] {
         white-space: normal;
         text-align: left; 
     }
-
-
 }
 
 /* Slightly larger container on xl screens */

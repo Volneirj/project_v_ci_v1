@@ -134,7 +134,7 @@
             <div class="row">
                 {% for review in product.reviews.all %}
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
-                    <div class="card shadow-sm border-0 h-100">
+                    <div class="card card-shadow shadow-sm border-0 h-100">
                         <div class="card-body">
                             <!-- Reviewer Name -->
                             <h5 class="card-title font-weight-bold">{{ review.user.username }}</h5>
@@ -144,11 +144,11 @@
                             </p>
                             
                             <!-- Review Date -->
-                            <p class="text-muted small mb-2">Reviewed on {{ review.created_at|date:"d/m/Y" }}</p>
+                            <small class="text-muted mb-2">Reviewed on {{ review.created_at|date:"d/m/Y" }}</small>
                             
                             <!-- Review Content -->
                             <p class="card-text">{{ review.comment }}</p>
-                            {% if review.user == request.user %}
+                            {% if request.user == review.user or request.user.is_superuser %}
                             <a href="{% url 'delete_review' review.id %}" class="btn btn-sm btn-danger">Delete</a>
                             {% endif %}
                         </div>    
@@ -186,7 +186,7 @@
                 </div>
                 {{ review_form.comment }}
                 <div class="d-flex justify-content-center mt-3">
-                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                    <button type="submit" class="btn btn-outline-black rounded-0 mb-2 border-btn">Submit Review</button>
                 </div>
             </form>
         </div>
@@ -205,7 +205,6 @@
 {% block postloadjs %}
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
-{% include 'products/includes/useful_script.html' %}
 <script>
     function updateSliderValue(value) {
         document.getElementById("slider-value").textContent = value;

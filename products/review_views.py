@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Product, Review
 from checkout.models import OrderLineItem
@@ -41,11 +42,19 @@ def submit_review(request, product_id):
     return redirect('product_detail', product_id=product.id)
 
 
+@login_required
 def delete_review(request, review_id):
     """
-    Allow users to delete their reviews.
+    Allow users to delete their own reviews or 
+    admin to delete any review.
     """
-    review = get_object_or_404(Review, id=review_id, user=request.user)
-    review.delete()
-    messages.success(request, "Your review has been deleted.")
+    review = get_object_or_404(Review, id=review_id)
+
+    # Allow the review's author or an admin to delete the review
+    if request.user == review.user or request.user.is_superuser:
+        review.delete()
+        messages.success(request, "The review has been deleted.")
+    else:
+        messages.error(request, "You do not have permission to delete this review.")
+    
     return redirect('product_detail', product_id=review.product.id)

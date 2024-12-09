@@ -52,10 +52,11 @@ class Product(models.Model):
     def average_rating(self):
         """
         Calculate and return the average rating for the product based on its reviews.
-        If there are no reviews, return None.
+        If there are no reviews, return the product's initial rating.
         """
-        return self.reviews.aggregate(avg_rating=Avg('rating'))['avg_rating']
-    
+        avg_rating = self.reviews.aggregate(avg_rating=Avg('rating'))['avg_rating']
+        return avg_rating if avg_rating is not None else self.rating
+
 
 class Wishlist(models.Model):
     """
