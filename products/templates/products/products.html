@@ -85,8 +85,33 @@
                                             {% if request.user.is_superuser %}
                                                 <small class="ml-3">
                                                     <a href="{% url 'edit_product' product.id %}">Edit</a> | 
-                                                    <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+                                                    <a href="#" class="text-danger" data-toggle="modal" data-target="#deleteModal">
+                                                        Delete
+                                                    </a>
                                                 </small>
+                                                <!--Modal-->
+                                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Are you sure you want to delete <strong>{{ product.name }}</strong>? This action cannot be undone.
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <form method="POST" action="{% url 'delete_product' product.id %}">
+                                                                    {% csrf_token %}
+                                                                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                                                                </form>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             {% endif %}
                                         </div>
                                     </div>
