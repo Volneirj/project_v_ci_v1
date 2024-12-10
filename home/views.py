@@ -2,9 +2,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.mail import send_mail
-from .forms import SubscriptionForm, ContactUsForm
 from django.conf import settings
+from django.utils.http import url_has_allowed_host_and_scheme
 
+from .forms import SubscriptionForm, ContactUsForm
 
 def index(request):
     """
@@ -89,7 +90,12 @@ def subscribe(request):
             messages.success(request, "Thank you for subscribing!")
         else:
             messages.error(request, "Invalid email or already subscribed.")
-    return redirect(request.META.get('HTTP_REFERER', 'home'))
+            
+    # Validate HTTP_REFERER
+    referer = request.META.get('HTTP_REFERER')
+    if referer and url_has_allowed_host_and_scheme(referer, allowed_hosts={request.get_host()}):
+        return redirect(referer)
+    return redirect('home')
 
 
 def contact_us(request):
