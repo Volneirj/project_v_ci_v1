@@ -1,3 +1,7 @@
+"""
+Boutiqueado Source code
+"""
+
 from django import template
 
 register = template.Library()

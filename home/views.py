@@ -90,7 +90,7 @@ def subscribe(request):
             messages.success(request, "Thank you for subscribing!")
         else:
             messages.error(request, "Invalid email or already subscribed.")
-            
+
     # Validate HTTP_REFERER
     referer = request.META.get('HTTP_REFERER')
     if referer and url_has_allowed_host_and_scheme(referer, allowed_hosts={request.get_host()}):
@@ -120,4 +120,3 @@ def contact_us(request):
         form = ContactUsForm()
 
     return render(request, 'home/contact_us.html', {'form': form})
-

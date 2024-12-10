@@ -1,8 +1,13 @@
+"""
+This file handle related views 
+used on product review
+"""
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Product, Review
 from checkout.models import OrderLineItem
+
+from .models import Product, Review
 from .forms import ReviewForm
 
 
@@ -13,7 +18,7 @@ def submit_review(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
     # Ensure the user has purchased the product
-    order_line_item = OrderLineItem.objects.filter(
+    order_line_item = OrderLineItem.objects.filter(# pylint: disable=no-member
         order__user_profile__user=request.user, product=product
     ).first()
 
@@ -24,7 +29,7 @@ def submit_review(request, product_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
-            review, created = Review.objects.update_or_create(
+            created = Review.objects.update_or_create(# pylint: disable=no-member
                 product=product,
                 user=request.user,
                 defaults={
@@ -56,5 +61,5 @@ def delete_review(request, review_id):
         messages.success(request, "The review has been deleted.")
     else:
         messages.error(request, "You do not have permission to delete this review.")
-    
+
     return redirect('product_detail', product_id=review.product.id)

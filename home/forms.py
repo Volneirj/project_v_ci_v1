@@ -1,6 +1,11 @@
+"""
+Forms file to hangle all related home page forms
+Subscription
+Contact us
+"""
+
 from django import forms
 from .models import Subscription
-
 
 
 class SubscriptionForm(forms.ModelForm):
@@ -16,6 +21,9 @@ class SubscriptionForm(forms.ModelForm):
         - Ensures email validation and uniqueness, as defined in the Subscription model.
     """
     class Meta:
+        """
+        Add style and place holders to the form
+        """
         model = Subscription
         fields = ['email']
         widgets = {

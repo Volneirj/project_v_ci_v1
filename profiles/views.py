@@ -35,8 +35,8 @@ def profile(request):
             messages.error(request, 'Update failed. Please ensure the form is valid.')
 
         return redirect('profile')  # Redirect to the profile page after POST
-    else:
-        form = UserProfileForm(instance=user_profile)
+
+    form = UserProfileForm(instance=user_profile)
     orders = user_profile.orders.all()
 
     template = 'profiles/profile.html'

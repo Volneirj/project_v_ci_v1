@@ -15,7 +15,7 @@ class CustomEmailBackend(EmailBackend):
                 )
             self.connection.ehlo()
             if self.use_tls:
-                self.connection.starttls() 
+                self.connection.starttls()
                 self.connection.ehlo()
             if self.username and self.password:
                 self.connection.login(self.username, self.password)

@@ -11,7 +11,7 @@ class ProductForm(forms.ModelForm):
     """
     A form for admin add product.
     """
-    class Meta:
+    class Meta: # pylint: disable=too-few-public-methods
         model = Product
         fields = '__all__'
 
@@ -22,7 +22,7 @@ class ProductForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        categories = Category.objects.all()
+        categories = Category.objects.all()# pylint: disable=no-member
         friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
 
         # Remove the 'sizes' field from the form
@@ -38,7 +38,11 @@ class ReviewForm(forms.ModelForm):
     """
     A form for users to submit reviews.
     """
-    class Meta:
+    class Meta:# pylint: disable=too-few-public-methods
+        """
+        Ensure the rating is between 0 and 5.
+        Add place holder to the form
+        """
         model = Review
         fields = ['rating', 'comment']
         widgets = {

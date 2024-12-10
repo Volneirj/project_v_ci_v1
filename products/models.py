@@ -19,11 +19,19 @@ class Category(models.Model):
     with an optional friendly name for display purposes.
     """
 
-    class Meta:
+    class Meta:# pylint: disable=too-few-public-methods
+        """
+        Vebose
+        """
         verbose_name_plural= 'Categories'
 
     name = models.CharField(max_length=254, unique=True)
-    friendly_name = models.CharField(max_length=254, null = True, blank = True, verbose_name="Friendly Name")
+    friendly_name = models.CharField(
+        max_length=254,
+        null = True,
+        blank = True,
+        verbose_name="Friendly Name"
+        )
 
     def __str__(self):
         return str(self.name)
@@ -47,14 +55,14 @@ class Product(models.Model):
 
     def __str__(self):
         return str(self.name)
-    
+
     @property
     def average_rating(self):
         """
         Calculate and return the average rating for the product based on its reviews.
         If there are no reviews, return the product's initial rating.
         """
-        avg_rating = self.reviews.aggregate(avg_rating=Avg('rating'))['avg_rating']
+        avg_rating = self.reviews.aggregate(avg_rating=Avg('rating'))['avg_rating']# pylint: disable=no-member
         return avg_rating if avg_rating is not None else self.rating
 
 
@@ -69,21 +77,27 @@ class Wishlist(models.Model):
         unique_together: Ensures the item is not added twice.
         ordering: Orders wishlist items by creation date in descending order.
     """
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="wishlists")
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="wishlists"
+        )
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="wishlisted_by")
     created_at = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
+    class Meta:# pylint: disable=too-few-public-methods
         unique_together = ('user', 'product')
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.user.username} - {self.product.name}"
+        return f"{self.user.username} - {self.product.name}"# pylint: disable=no-member
 
 
 class Review(models.Model):
     """
-    A model to store product reviews, linked to an order line item to ensure the user has purchased the product.
+    A model to store product reviews,
+    linked to an order line item to ensure
+    the user has purchased the product.
     """
     order_line_item = models.ForeignKey(
         'checkout.OrderLineItem',
@@ -103,10 +117,9 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    class Meta:
+    class Meta:# pylint: disable=too-few-public-methods
         unique_together = ('product', 'user')
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.user.username} review on {self.product.name}"
-    
+        return f"{self.user.username} review on {self.product.name}"# pylint: disable=no-member

@@ -26,7 +26,7 @@ from .serializers import WishlistSerializer
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
-    products = Product.objects.all()
+    products = Product.objects.all()# pylint: disable=no-member
     query = None
     categories = None
     sort = None
@@ -50,7 +50,7 @@ def all_products(request):
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
-            categories = Category.objects.filter(name__in=categories)
+            categories = Category.objects.filter(name__in=categories)# pylint: disable=no-member
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -102,10 +102,9 @@ def add_product(request):
             product = form.save()
             messages.success(request, 'Successfully added product!')
             return redirect(reverse('product_detail', args=[product.id]))
-        else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
-    else:
-        form = ProductForm()
+        messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+
+    form = ProductForm()
 
     template = 'products/add_product.html'
     context = {
@@ -129,11 +128,10 @@ def edit_product(request, product_id):
             form.save()
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
-        else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
-    else:
-        form = ProductForm(instance=product)
-        messages.info(request, f'You are editing {product.name}')
+        messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+
+    form = ProductForm(instance=product)
+    messages.info(request, f'You are editing {product.name}')
 
     template = 'products/edit_product.html'
     context = {
@@ -158,11 +156,18 @@ def delete_product(request, product_id):
 
 
 class WishlistView(LoginRequiredMixin, APIView):
+    """
+    API view for managing a user's wishlist.
+
+    Provides endpoints to retrieve and manage wishlist items:
+    - GET: Retrieve the current user's wishlist.
+    - POST: Add a product to the user's wishlist.
+    """
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
         """Retrieve user's wishlist"""
-        wishlist_items = Wishlist.objects.filter(user=request.user)
+        wishlist_items = Wishlist.objects.filter(user=request.user)# pylint: disable=no-member
         serializer = WishlistSerializer(wishlist_items, many=True)
         return Response(serializer.data)
 
@@ -173,7 +178,7 @@ class WishlistView(LoginRequiredMixin, APIView):
             return Response({"error": "Product ID is required"}, status=status.HTTP_400_BAD_REQUEST)
 
         product = get_object_or_404(Product, id=product_id)
-        if Wishlist.objects.filter(user=request.user, product=product).exists():
+        if Wishlist.objects.filter(user=request.user, product=product).exists():# pylint: disable=no-member
             messages.error(request, f'{product.name} is already in your wishlist.')
             return redirect('product_detail', product_id=product_id)
 
@@ -188,7 +193,7 @@ def remove_from_wishlist(request, item_id):
 
     try:
         product = get_object_or_404(Product, pk=item_id)
-        wishlist_item = Wishlist.objects.filter(user=request.user, product=product).first()
+        wishlist_item = Wishlist.objects.filter(user=request.user, product=product).first()# pylint: disable=no-member
 
         if wishlist_item:
             wishlist_item.delete()
@@ -207,6 +212,5 @@ def remove_from_wishlist(request, item_id):
 @login_required
 def wishlist_page(request):
     """Render the user's wishlist."""
-    wishlist_items = Wishlist.objects.filter(user=request.user).select_related('product')
+    wishlist_items = Wishlist.objects.filter(user=request.user).select_related('product')# pylint: disable=no-member
     return render(request, 'products/wishlist.html', {'wishlist_items': wishlist_items})
-
