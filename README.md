@@ -1,131 +1,436 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Charmed & Crafted  
+## Your Destination for Unique Artisan Creations  
 
-Welcome USER_NAME,
+Welcome to **Charmed & Crafted**, an e-commerce platform dedicated to showcasing and selling handcrafted, one-of-a-kind products. 
+Discover unique candles, charms, and personalized gifts made with love and care by talented artisans. 
+Whether you're shopping for yourself or looking for the perfect gift, **Charmed & Crafted** is here to bring artisanal beauty to your doorstep.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
+## Explore Our Collections  
+[Visit Charmed & Crafted Online Store](https://charmed-crafted-4f4e1e02f356.herokuapp.com/)  
 
-## Gitpod Reminders
+![Shop Responsively](documentation/readme_images/features/responsive.jpg)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
 
-`python3 -m http.server`
+# Table of Contents
 
-A blue button should appear to click: _Make Public_,
+- [Project Overview](#project-overview)
+  - [Purpose](#purpose)
+  - [Existing Features](#existing-features)
+- [Technical Design](#technical-design)
+  - [WireFrames](#wireframes)
+  - [Models Relationships](#models-relationships)
+- [Technologies](#technologies)
+- [Main Used Libraries](#main-used-libraries)
+- [Testing and Fixing Bugs](#testing-and-fixing-bugs)
+- [Deployment](#deployment)
+  - [GitHub Forking](#github-forking)
+  - [Heroku Deployment](#heroku-deployment)
+- [Credits](#credits)
 
-Another blue button should appear to click: _Open Browser_.
+## Project Overview
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
+### Purpose:
 
-A blue button should appear to click: _Make Public_,
+This project serves as an educational resource, demonstrating the application of Python development skills in building a comprehensive, fully functional e-commerce platform. The project showcases how **Django** can be leveraged to create a scalable, interactive, and secure application, with a focus on user experience, data management, and thorough testing. 
 
-Another blue button should appear to click: _Open Browser_.
+The system includes features such as:
+- **Stripe Payments** for secure and reliable online transactions.
+- A robust e-commerce platform supporting product browsing, filtering, and detailed product views.
+- **AWS S3** for scalable and reliable storage of media and static files.
+- A responsive and visually appealing design using **Bootstrap**.
 
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+This project exemplifies how **Python**, **Django**, **Bootstrap**, **Stripe**, and **AWS** can be combined to build a fully functional, secure, and visually appealing web application, taking into account real-world considerations like payment integration, scalability, and performance.
 
-To log into the Heroku toolbelt CLI:
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+### Existing Features
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
+#### Navigation bar
 
-### Connecting your Mongo database
+- The Navigation bar is customized for the three types of logins: Administrator, Registered user, and non-registered users.
+        <details><summary>Administrator Navbar</summary><img src="documentation/readme_images/features/menu-adm.jpg"></details>
+        <details><summary>Normal User NavBar</summary><img src="documentation/readme_images/features/menu-normal-user.jpg"></details>
+        <details><summary>Not Logged-in NavBar</summary><img src="documentation/readme_images/features/menu-no-user.jpg"></details>
 
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
+#### Main Page
 
-------
+- Cozy Welcome page. 
+- Easy access to full store through the explore our collection button.
+- Easy Navigation through products, categories straigth from the home page.
+        <details><summary>Main Page</summary><img src="documentation/readme_images/features/main-page.jpg"></details>
 
-## Release History
+#### Footer
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+Footer
+The footer of Charmed & Crafted provides easy access to important sections and contact options for users.
+It is designed to enhance navigation, improve user experience, and provide essential information in a structured format.
+        <details><summary>Footer</summary><img src="documentation/readme_images/features/footer.jpg"></details>
 
-**June 18, 2024,** Add Mongo back into template
+#### Key Footer Sections:
 
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
+### Key Sections:
 
-**May 28 2024:** Fix Mongo and Links installs
+#### Explore:
+This section allows users to explore the store, learn about the brand, and connect with the team.
 
-**April 26 2024:** Update node version to 16
+- **Shop**  
+  Redirects users to the main product page where they can browse all available products.  
+        <details><summary>Shop</summary><img src="documentation/readme_images/features/shop.jpg"></details>
 
-**September 20 2023:** Update Python version to 3.9.17.
+- **Our Story**  
+  This page gives a brief introduction about the store's mission, values, and history.  
+        <details><summary>Our Story</summary><img src="documentation/readme_images/features/our-story.jpg"></details>
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+- **Contact Us**  
+  Users can find contact details or a form to directly get in touch with the store for inquiries, feedback, or support.  
+        <details><summary>Contact Us</summary><img src="documentation/readme_images/features/contact-us.jpg"></details>
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+#### Customer Care:
+Essential links to help customers with policies and common queries.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+- **Shipping & Returns**  
+  Information on shipping policies, expected delivery times, and the return process.  
+        
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+- **FAQs**  
+  A dedicated FAQ page to answer common questions about products, services, and more.  
+        <details><summary>FAQs</summary><img src="documentation/readme_images/features/faqs.jpg"></details>
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+- **Privacy Policy**  
+  Details the store’s commitment to protecting customer data and privacy.  
+        <details><summary>Privacy Policy</summary><img src="documentation/readme_images/features/privacy-policy.jpg"></details>
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+- **Terms & Conditions**  
+  Outlines the terms and conditions for using the store's website and services.  
+        <details><summary>Terms & Conditions</summary><img src="documentation/readme_images/features/terms-conditions.jpg"></details>
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+#### Get Involved:
+This section provides information on workshops or events organized by the store to foster community engagement and creativity.  
+        <details><summary>Get Involved</summary><img src="documentation/readme_images/features/get-involved.jpg"></details>
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+#### Store Hours:
+Displays the store's operating hours and emphasizes availability for appointments.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+- Monday–Friday: 11am–5pm  
+- Saturday & Sunday: 10am–6pm  
+  **By Appointment Only**  
+        <details><summary>Store Hours</summary><img src="documentation/readme_images/features/store-hours.jpg"></details>
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+#### Stay Connected:
+Encourages users to subscribe for updates, offers, and inspiration. Includes a subscription form for entering an email address.  
+        <details><summary>Stay Connected</summary><img src="documentation/readme_images/features/stay-connected.jpg"></details>
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+#### Social Media Links:
+Icons linking to social media platforms such as:
+- Facebook  
+- Instagram  
+- YouTube  
+- Pinterest  
+- TikTok  
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+These links allow users to follow the store for updates, promotions, and community engagement.  
+        <details><summary>Social Media Links</summary><img src="documentation/readme_images/features/social-media.jpg"></details>
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+#### Sign up/Login page
 
-------
+- Simple, quick signup with confirmation email.
+        <details><summary>Signup</summary><img src="documentation/readme_images/features/signup.jpg"></details>
+        <details><summary>Confirmation Email Page</summary><img src="documentation/readme_images/features/confirmation-email-sent.jpg"></details>
+        <details><summary>Confirmation user Email</summary><img src="documentation/readme_images/features/confirmation-email-user.jpg"></details>
 
-## FAQ about the uptime script
 
-**Why have you added this script?**
+- The Login Page has a button to the signup page in case the person is not yet a user.
+        <details><summary>Login</summary><img src="documentation/readme_images/features/login.jpg"></details>
+        <details><summary>Toast Success Login</summary><img src="documentation/readme_images/features/toast-success-login.jpg"></details>
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
 
-**How will this affect me?**
+- The Signout Page has a button to confirm sign out or cancel.
+        <details><summary>Sign Out</summary><img src="documentation/readme_images/features/sign-out.jpg"></details>
+         <details><summary>Toast Success Signed out</summary><img src="documentation/readme_images/features/toast-success-signout.jpg"></details>
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+#### Book Suggestions Forms
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+- Open the Suggestion book page in case anyone wants to suggest new books. 
+        <details><summary>Book Suggestion Form</summary><img src="documentation/readme_images/features/suggest-book.jpg"></details>
 
-**So….?**
+- Thank you submission page.
+        <details><summary>Thank you page</summary><img src="documentation/readme_images/features/suggest-book-thanks.jpg"></details>
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+- Easy and clean admin interface to view the book suggestions.
+        <details><summary>Admin Interface</summary><img src="documentation/readme_images/features/suggest-book-adm.jpg"></details>
 
-**Can I opt out?**
+#### Book Issuance System
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+- Easy issuance when you click on a book cover, you will be directed to book details where, if logged in, it will show the option to book it; otherwise, it will show the login button.
+        <details><summary>Book Detail No User</summary><img src="documentation/readme_images/features/book-detail-nouser.jpg"></details>
+        <details><summary>Book Detail User Connected</summary><img src="documentation/readme_images/features/book-detail-user.jpg"></details>
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+- Confirmation screen showing the details of your issuance.
+        <details><summary>Issuance Details</summary><img src="documentation/readme_images/features/issue-book-screen.jpg"></details>
 
-**Anything more?**
+- You can see your history and return the books on the My Issued Books Link on the Navigation bar.
+        <details><summary>My Issued Books</summary><img src="documentation/readme_images/features/issued-book-history.jpg"></details>
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+- When returning a book, as a good practice, it has a confirmation.
+        <details><summary>Return Book Confirmation</summary><img src="documentation/readme_images/features/returning-book-confirmation.jpg"></details>
+        <details><summary>Book Return Notification</summary><img src="documentation/readme_images/features/book-return-notify.jpg"></details>
 
----
+#### Book Collection
 
-Happy coding!
+- The book collection has a search bar to search a title and shows the book cover and book name for easy visualization.
+        <details><summary>Book Collection</summary><img src="documentation/readme_images/features/bookcolection.jpg"></details>
+
+- When logged in as an admin, it shows the option at the top to add new books.
+        <details><summary>Admin Book Collection Interface</summary><img src="documentation/readme_images/features/add-book.jpg"></details>
+
+#### Administrator CRUD Function
+
+- As a web administrator, it is possible to add, update, or delete books.
+    - Adding a book:
+        1. On the Book Collection page as an Administrator, a button labeled "Add book" will be shown.
+                <details><summary>Add a book</summary><img src="documentation/readme_images/features/add-book.jpg"></details>
+        2. The link will bring you to a page where you can fill out the form to add a book.
+                <details><summary>Add a book form</summary><img src="documentation/readme_images/features/book-add-2.jpg"></details>
+        3. If a book cover is not loaded, it will automatically add a placeholder image saying "Book image not available."
+                <details><summary>Book Image not Available</summary><img src="documentation/readme_images/features/book-image-notavailable.jpg"></details>
+- As a web administrator, when on book details, the buttons to update and delete the book will be visible.
+            <details><summary>CRUD Options</summary><img src="documentation/readme_images/features/CRUD-edit-delete.jpg"></details>
+    - Updating a book:
+        1. Click on "Edit book."
+        2. The "Update Book" page will open where you can change all book information.
+                <details><summary>Update Book</summary><img src="documentation/readme_images/features/CRUD-edit.jpg"></details>
+    - Deleting a book:
+        1. Click on "Delete book."
+        2. You will be directed to a deletion page for confirmation.
+                <details><summary>Delete Book</summary><img src="documentation/readme_images/features/CRUD-delete.jpg"></details>
+
+#### Footer with Social Media Links  
+
+- The footer has social media links that open in a new page.
+            <details><summary>Footer</summary><img src="documentation/readme_images/features/footer.jpg"></details>
+
+#### Error Pages.
+
+- Page not found 404.
+        <details><summary>404 page</summary><img src="documentation/readme_images/features/404.jpg"></details>
+
+- Internal Server Error 500 .
+        <details><summary>500 page</summary><img src="documentation/readme_images/features/500.jpg"></details>        
+
+
+
+#### Extra Functions
+
+- Late fee function: If the book is not returned in 14 days, a $1 fee will be applied for each day of delay.
+        <details><summary>Late Fee</summary><img src="documentation/readme_images/features/late-fee.jpg"></details>
+- You cannot issue two copies of the same title at once.
+        <details><summary>Book Already Issued Notification</summary><img src="documentation/readme_images/features/notification-book-already-issued.jpg"></details>
+- You can only issue 3 books at once.
+        <details><summary>Max Issue Notification</summary><img src="documentation/readme_images/features/max-issue.jpg"></details>
+- Book out of stock.
+        <details><summary>Book Out of Stock Notification</summary><img src="documentation/readme_images/features/out-of-stocks.jpg"></details>
+
+## Technical Design
+
+### WireFrames
+
+- When the VIL-MASYS project began, I created basic wireframes to outline the initial design and functionality of the application. These wireframes served as a starting point to visualize the core structure and user flow. However, as development progressed, significant changes were made to improve the user experience, functionality, and overall design.
+
+- Initial WireFrame Design:
+        <details><summary>Home</summary><img src="documentation/readme_images/wireframes/home.jpg"></details>
+        <details><summary>Book Info</summary><img src="documentation/readme_images/wireframes/book-info.jpg"></details>
+        <details><summary>Login</summary><img src="documentation/readme_images/wireframes/login.jpg"></details>
+        <details><summary>Issued Book</summary><img src="documentation/readme_images/wireframes/issue-book-page.jpg"></details>
+        <details><summary>About</summary><img src="documentation/readme_images/wireframes/about.jpg"></details>
+
+- Key Changes:
+    - Enhanced User Interface: The initial wireframes were simple and lacked the visual appeal needed for a modern web application. As the project evolved, I introduced a more polished and intuitive interface, incorporating feedback and best practices in UI/UX design.
+
+    - Expanded Features: Originally, the wireframes focused on basic functionalities. During development, new features were added, such as personalized book recommendations, late fees, notifications, and advanced search capabilities, which were not part of the initial plan.
+
+    - Improved Navigation and Layout: The initial wireframes had a straightforward but somewhat limited navigation structure. I restructured the layout to provide a more seamless and logical flow, making it easier for users to navigate between different sections of the application.
+
+### Models Relationships
+
+- Key Relationships:
+    1. Book and IssuedBook Relationship
+        - Relationship Type: One-to-Many (ForeignKey)
+            Explanation:
+            - The Book model represents each book in the library's collection.
+            - The IssuedBook model keeps track of each instance where a book is issued to a user.
+            - A single Book can be issued multiple times, hence the one-to-many relationship. This is implemented using a ForeignKey in the IssuedBook model that references the Book model.
+            - The related_name='issued_books' allows you to access all issued records for a particular book using book.issued_books.all().
+    2. User and IssuedBook Relationship
+        - Relationship Type: One-to-Many (ForeignKey)
+            Explanation:
+            - The User model (from Django’s built-in authentication system) represents the users of the library system.
+            - Each user can issue multiple books over time. Therefore, there is a one-to-many relationship between User and IssuedBook.
+            - The ForeignKey in the IssuedBook model links each issued book to the specific user who has borrowed it.
+            - The related_name='issued_books' allows you to retrieve all the books issued by a particular user using user.issued_books.all().
+    3. BookSuggestion Model
+    - Standalone Entity:
+            - The BookSuggestion model is independent of the Book and IssuedBook models. It captures suggestions for new books that users want to see in the library.
+            - This model contains information about the suggested book's title and author, as well as optional fields for the user’s name, email, and reason for suggesting the book.
+            - While this model is not directly related to the Book or User models through foreign keys, it plays an important role in allowing users to contribute to the library’s growth.
+
+    <details><summary>Relations</summary><img src="documentation/readme_images/relation.jpg"></details>
+
+## Technologies
+
+### Backend and Frameworks:
+
+- **Python:** Core programming language used for the project.
+- **Django:** Web framework for building the application's backend, handling models, views, and forms.
+- **Django ORM:** For database interactions and queries.
+
+### Frontend:
+
+- **HTML/CSS:** For structuring and styling the web pages.
+- **Bootstrap:** CSS framework for responsive design and UI components like the navbar and forms.
+
+### Database:
+
+- **SQLite:** Default database used by Django for development/tests.
+- **PostgreSQL**:  Database for production.
+
+### Storage:
+
+-  **Cloudinary:** For managing and storing media files such as images.
+
+### User Authentication:
+- **Django's Authentication System:** For handling user registration, login, and permissions.
+
+### Testing:
+- **Django Test Framework:** For unit and integration testing of models, views, and forms.
+- **Unittest:** Python's standard library for writing and running tests.
+
+- **Visual Studio Code:** Local IDE.
+
+### Tools and Utilities:
+- **Git:** Version control system for tracking changes and collaborating.
+- **GitHub:**  Platform for hosting the project repository.
+
+### Deployment:
+- **Heroku:** Cloud Deployment.
+
+### Others:
+- **Timezone and Date/Time Handling:** Managing timezones and datetime objects for accurate timestamps.
+- **Coverage:** Generate automated test reports.
+
+## Main used Libraries
+
+- **Django:** The main web framework used to build your application.
+- **Django Rest Framework (DRF):** for building APIs.
+- **Bootstrap:** For frontend styling and responsive design.
+- **Pillow:** For image handling in Django.
+- **Cloudinary:** For storing and serving media files (images) in the cloud.
+- **Unittest:** For writing and running tests in Django application.
+- **Django Messages Framework:** For displaying flash messages to users.
+- **Django Paginator:** For handling pagination in your views.
+- **PostgreSQL:** As the database backend.
+- **Django Crispy Forms:** To make Django forms more elegant and manageable.
+- **Gunicorn:** As a Python WSGI HTTP Server for serving your application.
+- **Whitenoise:** For serving static files in production.
+- **Django Storage:** For managing storage in cloud environments.
+
+## Testing and Fixing Bugs
+
+### Debugging 
+
+  - For debugging the python code, `print` statements were used together with debugging tools and console logs to help identify bugs, loops, and condition interactions. 
+
+  **Debugging Tools**
+
+   - [CI Python Linter - Code Institute](https://pep8ci.herokuapp.com/)  
+   - [OpenAI Chat](https://chat.openai.com/)
+   - [Perplexity AI](https://www.perplexity.ai/) 
+
+## Testing 
+
+- The page of tests can be found at the link below:
+        [Project Test documentation](TESTING.md)
+
+## Deployment
+
+### Github Forking
+
+- **Forking the GitHub Repository**
+  - If you want to make changes to your repository without affecting it, you can make a copy of it by 'Forking' it. This ensures your original repository remains unchanged.
+
+  1. Find the relevant GitHub repository
+  2. In the top right corner of the page, click the Fork button (under your account)
+  3. Your repository has now been 'Forked' and you have a copy to work on
+
+- **Cloning the GitHub Repository**
+  - Cloning your repository will allow you to download a local version of the repository to work on. Cloning can also be a great way to backup your work.
+
+  1. Find the relevant GitHub repository
+  2. Press the arrow on the Code button
+  3. Copy the link that is shown in the drop-down
+  4. Open the terminal 
+  5. Move to the folder where you want to clone it
+  6. In the terminal type `git clone` and then paste the link you copied in GitHub
+  7. Press enter and your local clone will be created.
+
+- Live link: [GitHub Link](https://github.com/Volneirj/project_iv_ci)
+
+### Heroku Deployment
+
+- **Creating Requirements.txt**
+    - For Heroku to be able to install the required dependencies, it is necessary to create a file where the needed dependencies are listed.
+
+    1. Create a file named `requirements.txt`.
+    2. Run the command: `pip3 freeze >requirements.txt`.
+    3. Check if the file has been updated, as shown in the image below.
+
+![Requirements.txt](documentation/readme_images/general_info/requirements.jpg)
+
+- **Creating an Application with Heroku**
+    - To deploy and run the application on the Heroku platform, it is necessary to follow a few steps:
+
+    1. Login or create an account on the Heroku website.
+    2. Click on "Create a new app."
+
+![New app](documentation/readme_images/general_info/create-new-app.jpg)
+
+3. After creating the new app, you need to configure the settings.
+4. The first setting that needs to be done is to add your environment info to the platform so it will be able to access outside sources.
+
+![Settings CREDS](documentation/readme_images/general_info/creds.jpg)
+
+5. Add the Buildpacks necessary to run the application, in this case, Python and Node.js in this sequence.
+
+![Buildpacks](documentation/readme_images/general_info/buildpacks.jpg)
+
+6. After completing the settings, move to the deploy tab where you will configure the deployment setup.
+7. Connect your GitHub.
+8. Select your repository on GitHub.
+9. Connect to the repository.
+
+![Github](documentation/readme_images/general_info/github.jpg)
+
+10. After all the settings above have been done, you can select to deploy automatically or manually.
+
+![Deploy](documentation/readme_images/general_info/deploy.jpg)
+
+11. After pressing deploy, if all settings are correct, you should see it building the application.
+
+![Project being Deployed](documentation/readme_images/general_info/deployed.jpg)
+
+12. After all steps of deployment, a button labeled "View" will be shown, where you can click to open a new tab with the application.
+
+
+![Deploy done](documentation/readme_images/general_info/done.jpg)
+
+
+## Credits
+
+**Mentor:** [Harry Dhillon](https://github.com/Harry-Leepz/)
+
+**Base template:** [Code Instutute: I Think Therefore I Blog](https://github.com/Code-Institute-Solutions/blog/)
+
+**Book Covers:** Created Using [Canva](https://www.canva.com/)
+
+**Book/Title Descriptions:** Generated with [ChatGPT](https://chatgpt.com/)
