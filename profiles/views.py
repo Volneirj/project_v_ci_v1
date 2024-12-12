@@ -32,7 +32,10 @@ def profile(request):
             user.save()
             messages.success(request, 'Profile updated successfully')
         else:
-            messages.error(request, 'Update failed. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Update failed. Please ensure the form is valid.'
+            )
 
         return redirect('profile')  # Redirect to the profile page after POST
 

@@ -1,9 +1,11 @@
 from django.core.mail.backends.smtp import EmailBackend
 
+
 class CustomEmailBackend(EmailBackend):
     """
     Custom email backend extending Django's SMTP email backend.
-    Provides additional customization for opening connections to the SMTP server.
+    Provides additional customization for opening connections
+    to the SMTP server.
     """
     def open(self):
         """Open a connection to the email server."""
