@@ -53,7 +53,7 @@ class StripeWebHandler:
             logger = logging.getLogger(__name__)
             logger.error(
                 "Error sending confirmation email for order %s: %s",
-                order.order_number,e
+                order.order_number, e
                 )
 
     def _get_stripe_charge_and_details(self, intent):
@@ -72,10 +72,12 @@ class StripeWebHandler:
         """Update user profile information if save_info is checked"""
         if username != 'AnonymousUser':
             try:
-                profile = UserProfile.objects.get(user__username=username)  # pylint: disable=E1101
+                profile = UserProfile.objects.get(user__username=username)
                 if save_info:
-                    address = shipping_details['address']  # Extract the dictionary
-                    profile.default_phone_number = shipping_details.get('phone')
+                    address = shipping_details['address']
+                    profile.default_phone_number = shipping_details.get(
+                        'phone'
+                        )
                     profile.default_country = address.get('country')
                     profile.default_postcode = address.get('postal_code')
                     profile.default_town_or_city = address.get('city')
@@ -107,7 +109,7 @@ class StripeWebHandler:
                 grand_total=order_data["grand_total"],
             )
             for item_id, item_data in json.loads(order_data["bag"]).items():
-                product = Product.objects.get(id=item_id)  # pylint: disable=E1101
+                product = Product.objects.get(id=item_id)
                 if isinstance(item_data, int):
                     order_line_item = OrderLineItem(
                         order=order,
@@ -130,7 +132,6 @@ class StripeWebHandler:
                 order.delete()
             raise ValueError(f"Order creation failed: {e}") from e
 
-
     def handle_event(self, event):
         """Handle a generic/unknown/unexpected webhook event"""
         return HttpResponse(
@@ -142,7 +143,7 @@ class StripeWebHandler:
         intent = event.data.object
         pid = intent.id
         bag = intent.metadata.get('bag', None)
-        save_info = intent.metadata.get('save_info', 'false')  # Default to 'false'
+        save_info = intent.metadata.get('save_info', 'false')
 
         if not bag:
             return HttpResponse(
@@ -155,7 +156,7 @@ class StripeWebHandler:
                 billing_details,
                 shipping_details,
                 grand_total
-                )= self._get_billing_shipping_details(intent)
+            ) = self._get_billing_shipping_details(intent)
         except ValueError as e:
             return HttpResponse(content=str(e), status=500)
 
@@ -178,8 +179,12 @@ class StripeWebHandler:
             "country__iexact": shipping_details['address'].get('country'),
             "postcode__iexact": shipping_details['address'].get('postal_code'),
             "town_or_city__iexact": shipping_details['address'].get('city'),
-            "street_address1__iexact": shipping_details['address'].get('line1'),
-            "street_address2__iexact": shipping_details['address'].get('line2'),
+            "street_address1__iexact": (
+                shipping_details['address'].get('line1')
+                ),
+            "street_address2__iexact": (
+                shipping_details['address'].get('line2')
+                ),
             "county__iexact": shipping_details['address'].get('state'),
             "grand_total": grand_total,
             "original_bag": bag,
@@ -191,8 +196,10 @@ class StripeWebHandler:
         if order:
             self._send_confirmation_email(order)
             return HttpResponse(
-                content=f'Webhook received: {event["type"]} |'
-                        f' SUCCESS: Verified order already in database',
+                content=(
+                    f'Webhook received: {event["type"]} |'
+                    f' SUCCESS: Verified order already in database'
+                ),
                 status=200,
             )
 
@@ -212,16 +219,18 @@ class StripeWebHandler:
 
         self._send_confirmation_email(order)
         return HttpResponse(
-            content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
+            content=(
+                f'Webhook received: {event["type"]} | '
+                f'SUCCESS: Created order in webhook'
+            ),
             status=200,
         )
-
 
     def _get_billing_shipping_details(self, intent):
         """Retrieve and return billing and shipping details"""
         try:
             stripe.api_key = settings.STRIPE_SECRET_KEY
-            charge = stripe.Charge.retrieve(intent.latest_charge)  # Unused variable removed
+            charge = stripe.Charge.retrieve(intent.latest_charge)
             billing_details = charge.billing_details
             shipping_details = intent.shipping
             grand_total = round(charge.amount / 100, 2)
@@ -229,14 +238,13 @@ class StripeWebHandler:
         except stripe.error.StripeError as e:
             raise ValueError(f"Stripe error: {e}") from e
 
-
     def _find_existing_order(self, order_search_params):
         """Try to find an existing order based on the search parameters"""
         attempt = 1
         while attempt <= 5:
             try:
-                return Order.objects.get(**order_search_params)  # pylint: disable=E1101
-            except Order.DoesNotExist:  # pylint: disable=E1101
+                return Order.objects.get(**order_search_params)
+            except Order.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
         return None

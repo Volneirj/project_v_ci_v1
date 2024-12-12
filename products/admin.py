@@ -1,5 +1,5 @@
 """
-This file handle the admin page 
+This file handle the admin page
 configuration for products app
 """
 
@@ -31,6 +31,7 @@ class CategoryAdmin(admin.ModelAdmin):
         'friendly_name',
         'name',
     )
+
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)

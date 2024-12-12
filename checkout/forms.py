@@ -12,7 +12,7 @@ class OrderForm(forms.ModelForm):
     This form includes placeholders, custom styling, and removes
     auto-generated labels to enhance user experience.
     """
-    class Meta: # pylint: disable=too-few-public-methods
+    class Meta:
         """
         Meta class to specify the model and fields for the form.
         """

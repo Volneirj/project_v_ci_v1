@@ -32,13 +32,22 @@ def cache_checkout_data(request):
         stripe.PaymentIntent.modify(pid, metadata={
             'bag': json.dumps(request.session.get('bag', {})),
             'save_info': request.POST.get('save_info'),
-            'username': request.user.username if request.user.is_authenticated else 'Guest',
+            'username': (
+                request.user.username
+                if request.user.is_authenticated
+                else 'Guest'
+            ),
         })
         return HttpResponse(status=200)
     except stripe.error.StripeError as e:
         messages.error(
-            request, 'Sorry, your payment cannot be processed right now. Please try again later.')
+            request, (
+                'Sorry, your payment cannot be processed '
+                'right now. Please try again later.'
+            )
+        )
         return HttpResponse(content=str(e), status=400)
+
 
 @ensure_csrf_cookie
 def checkout(request):
@@ -74,7 +83,11 @@ def handle_post_checkout(request):
         return redirect(reverse('checkout_success', args=[order.order_number]))
 
     messages.error(
-        request, "There was an error with your form. Please double-check your information.")
+        request, (
+            'There was an error with your form. '
+            'Please double-check your information.'
+            )
+        )
     return redirect(reverse('checkout'))
 
 
@@ -100,9 +113,13 @@ def handle_get_checkout(request, stripe_secret_key):
         amount=stripe_total,
         currency=settings.STRIPE_CURRENCY,
         metadata={
-            'bag': json.dumps(request.session.get('bag', {})),  # Include bag
-            'save_info': request.POST.get('save_info', 'false'),  # Include save_info
-            'username': request.user.username if request.user.is_authenticated else 'AnonymousUser',
+            'bag': json.dumps(request.session.get('bag', {})),
+            'save_info': request.POST.get('save_info', 'false'),
+            'username': (
+                request.user.username
+                if request.user.is_authenticated
+                else 'AnonymousUser'
+            ),
         },
     )
 
@@ -113,7 +130,11 @@ def handle_get_checkout(request, stripe_secret_key):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     if not stripe_public_key:
         messages.warning(
-            request, 'Stripe public key is missing. Did you forget to set it in your environment?')
+            request, (
+                'Stripe public key is missing. '
+                'Did you forget to set it in your environment?'
+                )
+            )
 
     # Render the checkout page with context
     return render(request, 'checkout/checkout.html', {
@@ -121,6 +142,7 @@ def handle_get_checkout(request, stripe_secret_key):
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     })
+
 
 def checkout_success(request, order_number):
     """
@@ -130,7 +152,7 @@ def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
     if request.user.is_authenticated:
-        profile, _ = UserProfile.objects.get_or_create(user=request.user) # pylint: disable=no-member
+        profile, _ = UserProfile.objects.get_or_create(user=request.user)
         order.user_profile = profile
         order.save()
 
@@ -144,8 +166,12 @@ def checkout_success(request, order_number):
                 user_profile_form.save()
 
     messages.success(
-        request, f'Order successfully processed! Your order number '
-        f'is {order_number}. A confirmation email will be sent to {order.email}.')
+        request, (
+            f'Order successfully processed! Your order number '
+            f'is {order_number}. A confirmation'
+            f'email will be sent to {order.email}.'
+            )
+    )
     request.session.pop('bag', None)
 
     return render(request, 'checkout/checkout_success.html', {'order': order})
@@ -157,7 +183,7 @@ def _initialize_order_form(request):
     """
     if request.user.is_authenticated:
         try:
-            profile = UserProfile.objects.get(user=request.user) # pylint: disable=no-member
+            profile = UserProfile.objects.get(user=request.user)
             initial_data = {
                 'full_name': profile.user.get_full_name(),
                 'email': profile.user.email,
@@ -170,7 +196,7 @@ def _initialize_order_form(request):
                 'county': profile.default_county,
             }
             return OrderForm(initial=initial_data)
-        except UserProfile.DoesNotExist: # pylint: disable=no-member
+        except UserProfile.DoesNotExist:
             return OrderForm()
     else:
         return OrderForm()
@@ -188,20 +214,29 @@ def _create_order(request, order_form, bag):
         order.save()
 
         for item_id, item_data in bag.items():
-            product = Product.objects.get(id=item_id) # pylint: disable=no-member
+            product = Product.objects.get(id=item_id)
             if isinstance(item_data, int):
-                OrderLineItem.objects.create(order=order, product=product, quantity=item_data) # pylint: disable=no-member
+                OrderLineItem.objects.create(
+                    order=order,
+                    product=product,
+                    quantity=item_data
+                )
             else:
                 for size, quantity in item_data['items_by_size'].items():
-                    OrderLineItem.objects.create( # pylint: disable=no-member
-                        order=order, product=product, quantity=quantity, product_size=size
-                        )
+                    OrderLineItem.objects.create(
+                        order=order, product=product,
+                        quantity=quantity,
+                        product_size=size
+                    )
 
         return order
-    except Product.DoesNotExist: # pylint: disable=no-member
-        messages.error(request, (
-                       "One of the products in your bag "
-                       "wasn't found in our database. Please call us for assistance."
-                       ))
+    except Product.DoesNotExist:
+        messages.error(
+            request, (
+                "One of the products in your bag "
+                "wasn't found in our database."
+                "Please call us for assistance."
+                )
+        )
         order.delete()
         return None

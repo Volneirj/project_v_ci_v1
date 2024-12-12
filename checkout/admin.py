@@ -9,7 +9,7 @@ class OrderLineItemAdminInline(admin.TabularInline):
     """
     Inline admin configuration for OrderLineItem.
 
-    Allows managing OrderLineItem objects 
+    Allows managing OrderLineItem objects
     directly from the Order admin view.
     """
     model = OrderLineItem
@@ -20,7 +20,7 @@ class OrderAdmin(admin.ModelAdmin):
     """
     Admin configuration for the Order model.
 
-    Includes inline OrderLineItem management, 
+    Includes inline OrderLineItem management,
     readonly fields, and a custom layout
     for the admin detail and list views.
     """
@@ -43,5 +43,6 @@ class OrderAdmin(admin.ModelAdmin):
                     'grand_total',)
 
     ordering = ('-date',)
+
 
 admin.site.register(Order, OrderAdmin)

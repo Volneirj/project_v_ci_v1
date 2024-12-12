@@ -7,6 +7,7 @@ from django.utils.http import url_has_allowed_host_and_scheme
 
 from .forms import SubscriptionForm, ContactUsForm
 
+
 def index(request):
     """
     A view to return the index page
@@ -20,11 +21,12 @@ def our_story(request):
     """
     return render(request, 'home/our_story.html')
 
+
 def shipping_returns(request):
     """
     Render the Shipping & Returns page.
 
-    This view handles displaying information about the shipping policies, 
+    This view handles displaying information about the shipping policies,
     including processing times, delivery options, and return policies.
     """
     return render(request, 'home/shipping_returns.html')
@@ -34,7 +36,7 @@ def faqs(request):
     """
     Render the Frequently Asked Questions (FAQs) page.
 
-    This view handles displaying common questions and answers related to 
+    This view handles displaying common questions and answers related to
     orders, shipping, returns, products, and payment.
     """
     return render(request, 'home/faqs.html')
@@ -44,7 +46,7 @@ def privacy_policy(request):
     """
     Render the Privacy Policy page.
 
-    This view displays the privacy policy of the website, outlining how 
+    This view displays the privacy policy of the website, outlining how
     user data is collected, stored, used, and protected.
     """
     return render(request, 'home/privacy_policy.html')
@@ -54,7 +56,7 @@ def terms_conditions(request):
     """
     Render the Terms & Conditions page.
 
-    This view displays the terms of use for the website, including the 
+    This view displays the terms of use for the website, including the
     rules and regulations for accessing and using the platform.
     """
     return render(request, 'home/terms_conditions.html')
@@ -64,11 +66,10 @@ def workshops(request):
     """
     Render the Workshops page.
 
-    This view displays information about upcoming workshops, including 
+    This view displays information about upcoming workshops, including
     details on how to participate and what to expect.
     """
     return render(request, 'home/workshops.html')
-
 
 
 def subscribe(request):
@@ -93,7 +94,12 @@ def subscribe(request):
 
     # Validate HTTP_REFERER
     referer = request.META.get('HTTP_REFERER')
-    if referer and url_has_allowed_host_and_scheme(referer, allowed_hosts={request.get_host()}):
+    if (
+        referer
+        and url_has_allowed_host_and_scheme(
+            referer, allowed_hosts={request.get_host()}
+        )
+    ):
         return redirect(referer)
     return redirect('home')
 
@@ -115,7 +121,8 @@ def contact_us(request):
             messages.success(request, "Your message has been sent. Thank you!")
             form = ContactUsForm()
         else:
-            messages.error(request, "There was an error. Please check the form.")
+            messages.error(request,
+                           "There was an error. Please check the form.")
     else:
         form = ContactUsForm()
 

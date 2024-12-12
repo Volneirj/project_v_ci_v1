@@ -1,19 +1,22 @@
 """
 Source code:boutiqueado walkthrough
 """
-
 from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product
 
+
 def bag_contents(request):
     """
-    Retrieve the contents of the shopping bag from the session and calculate totals.
+    Retrieve the contents of the shopping bag
+    from the session and calculate totals.
 
-    This function computes the total price, product count, delivery costs,
-    and other bag-related metrics. It prepares a list of items in the bag,
-    where each item includes its ID, quantity, and corresponding product details.
+    This function computes the total price, product count,
+    delivery costs, and other bag-related metrics.
+    It prepares a list of items in the bag,
+    where each item includes its ID, quantity,
+    and corresponding product details.
     It also calculates the delivery cost based on the total price and
     whether the free delivery threshold has been met.
 
@@ -22,14 +25,16 @@ def bag_contents(request):
         session data.
 
     Returns:
-        dict: A dictionary containing:
-            - bag_items: List of items in the bag, each with item_id, quantity, and product details.
-            - total: Total cost of all items in the bag.
-            - product_count: Total number of items in the bag.
-            - delivery: Delivery cost based on the total price.
-            - free_delivery_delta: Amount required to qualify for free delivery.
-            - free_delivery_threshold: The minimum total required for free delivery.
-            - grand_total: Total cost including delivery.
+    dict: A dictionary containing:
+        - bag_items: List of items in the bag, each with item_id,
+        quantity, and product details.
+        - total: Total cost of all items in the bag.
+        - product_count: Total number of items in the bag.
+        - delivery: Delivery cost based on the total price.
+        - free_delivery_delta: Amount required to qualify for free delivery.
+        - free_delivery_threshold: The minimum total
+        required for free delivery.
+        - grand_total: Total cost including delivery.
     """
     bag_items = []
     total = 0

@@ -11,18 +11,19 @@ class ProductForm(forms.ModelForm):
     """
     A form for admin add product.
     """
-    class Meta: # pylint: disable=too-few-public-methods
+    class Meta:
         model = Product
         fields = '__all__'
 
-    image = forms.ImageField(label='Image',
-                             required=False,
-                             widget=CustomClearableFileInput
-                             )
+    image = forms.ImageField(
+        label='Image',
+        required=False,
+        widget=CustomClearableFileInput
+        )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        categories = Category.objects.all()# pylint: disable=no-member
+        categories = Category.objects.all()
         friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
 
         # Remove the 'sizes' field from the form
@@ -38,7 +39,7 @@ class ReviewForm(forms.ModelForm):
     """
     A form for users to submit reviews.
     """
-    class Meta:# pylint: disable=too-few-public-methods
+    class Meta:
         """
         Ensure the rating is between 0 and 5.
         Add place holder to the form
@@ -46,10 +47,19 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ['rating', 'comment']
         widgets = {
-            'rating': forms.NumberInput(attrs={
-                'min': 0, 'max': 5, 'class': 'form-control', 'placeholder': 'Rating (1-5)'
-            }),
-            'comment': forms.Textarea(attrs={
-                'class': 'form-control', 'placeholder': 'Write your review here...', 'rows': 4
-            }),
+            'rating': forms.NumberInput(
+                attrs={
+                    'min': 0,
+                    'max': 5,
+                    'class': 'form-control', 'placeholder': 'Rating (1-5)',
+                }
+            ),
+            'comment': forms.Textarea(
+                attrs={
+                    'class':
+                    'form-control',
+                    'placeholder': 'Write your review here...',
+                    'rows': 4,
+                    }
+            ),
         }

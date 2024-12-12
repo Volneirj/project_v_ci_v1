@@ -1,5 +1,5 @@
 """
-This file handle related views 
+This file handle related views
 used on product review
 """
 from django.shortcuts import get_object_or_404, redirect
@@ -18,18 +18,21 @@ def submit_review(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
     # Ensure the user has purchased the product
-    order_line_item = OrderLineItem.objects.filter(# pylint: disable=no-member
+    order_line_item = OrderLineItem.objects.filter(
         order__user_profile__user=request.user, product=product
     ).first()
 
     if not order_line_item:
-        messages.error(request, "You can only review products you have purchased.")
+        messages.error(
+            request,
+            "You can only review products you have purchased."
+        )
         return redirect('product_detail', product_id=product.id)
 
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
-            created = Review.objects.update_or_create(# pylint: disable=no-member
+            created = Review.objects.update_or_create(
                 product=product,
                 user=request.user,
                 defaults={
@@ -39,18 +42,24 @@ def submit_review(request, product_id):
                 },
             )
             if created:
-                messages.success(request, "Thank you for submitting your review!")
+                messages.success(
+                    request,
+                    "Thank you for submitting your review!"
+                    )
             else:
                 messages.success(request, "Your review has been updated!")
         else:
-            messages.error(request, "There was an error in your submission. Please try again.")
+            messages.error(
+                request,
+                "There was an error in your submission. Please try again."
+                )
     return redirect('product_detail', product_id=product.id)
 
 
 @login_required
 def delete_review(request, review_id):
     """
-    Allow users to delete their own reviews or 
+    Allow users to delete their own reviews or
     admin to delete any review.
     """
     review = get_object_or_404(Review, id=review_id)
@@ -60,6 +69,9 @@ def delete_review(request, review_id):
         review.delete()
         messages.success(request, "The review has been deleted.")
     else:
-        messages.error(request, "You do not have permission to delete this review.")
+        messages.error(
+            request,
+            "You do not have permission to delete this review."
+            )
 
     return redirect('product_detail', product_id=review.product.id)

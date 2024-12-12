@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
+
 class CheckoutConfig(AppConfig):
     """
     Configuration for the Checkout application.
@@ -10,4 +11,4 @@ class CheckoutConfig(AppConfig):
     name = 'checkout'
 
     def ready(self):
-        import checkout.signals # pylint: disable=import-outside-toplevel disable=unused-import
+        import checkout.signals
