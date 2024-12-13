@@ -163,7 +163,7 @@ def delete_product(request, product_id):
     if request.method == 'POST':
         # Perform the deletion
         product.delete()
-        messages.success(request, 'Product deleted!')
+        messages.success(request, f'Product {product.name} has been deleted!')
         return redirect(reverse('products'))
 
     # Render the confirmation page

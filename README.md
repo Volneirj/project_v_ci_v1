@@ -7,26 +7,9 @@ Whether you're shopping for yourself or looking for the perfect gift, **Charmed 
 
 
 ## Explore Our Collections  
-[Visit Charmed & Crafted Online Store](https://charmed-crafted-4f4e1e02f356.herokuapp.com/)  
+[Visit Charmed & Crafted Online Store](https://charmedandcrafted-65c7adf04e90.herokuapp.com/)  
 
 ![Shop Responsively](documentation/readme_images/features/responsive.jpg)
-
-
-# Table of Contents
-
-- [Project Overview](#project-overview)
-  - [Purpose](#purpose)
-  - [Existing Features](#existing-features)
-- [Technical Design](#technical-design)
-  - [WireFrames](#wireframes)
-  - [Models Relationships](#models-relationships)
-- [Technologies](#technologies)
-- [Main Used Libraries](#main-used-libraries)
-- [Testing and Fixing Bugs](#testing-and-fixing-bugs)
-- [Deployment](#deployment)
-  - [GitHub Forking](#github-forking)
-  - [Heroku Deployment](#heroku-deployment)
-- [Credits](#credits)
 
 ## Project Overview
 
@@ -42,6 +25,48 @@ The system includes features such as:
 
 This project exemplifies how **Python**, **Django**, **Bootstrap**, **Stripe**, and **AWS** can be combined to build a fully functional, secure, and visually appealing web application, taking into account real-world considerations like payment integration, scalability, and performance.
 
+
+## Technical Design UX/UI
+
+### WireFrames
+
+- When the VIL-MASYS project began, I created basic wireframes to outline the initial design and functionality of the application. These wireframes served as a starting point to visualize the core structure and user flow. However, as development progressed, significant changes were made to improve the user experience, functionality, and overall design.
+
+- Initial WireFrame Design:
+        <details><summary>Home</summary><img src="documentation/readme_images/wireframes/Initial_wireframes.jpg"></details>
+
+
+- Key Changes:
+    - Enhanced User Interface: The initial wireframes were simple and lacked the visual appeal needed for a modern web application. As the project evolved, I introduced a more polished and intuitive interface, incorporating feedback and best practices in UI/UX design.
+
+    - Expanded Features: Originally, the wireframes focused on basic functionalities. During development, new features were added, such as footer pages, notifications, wishlist, bag and checkout, a few forms to user interaction and advanced search capabilities, which were not part of the initial plan.
+
+    - Improved Navigation and Layout: The initial wireframes had a straightforward but somewhat limited navigation structure. I restructured the layout to provide a more seamless and logical flow, making it easier for users to navigate between different sections of the application.
+
+### Models Relationships
+
+- Key Relationships:
+    1. Book and IssuedBook Relationship
+        - Relationship Type: One-to-Many (ForeignKey)
+            Explanation:
+            - The Book model represents each book in the library's collection.
+            - The IssuedBook model keeps track of each instance where a book is issued to a user.
+            - A single Book can be issued multiple times, hence the one-to-many relationship. This is implemented using a ForeignKey in the IssuedBook model that references the Book model.
+            - The related_name='issued_books' allows you to access all issued records for a particular book using book.issued_books.all().
+    2. User and IssuedBook Relationship
+        - Relationship Type: One-to-Many (ForeignKey)
+            Explanation:
+            - The User model (from Django’s built-in authentication system) represents the users of the library system.
+            - Each user can issue multiple books over time. Therefore, there is a one-to-many relationship between User and IssuedBook.
+            - The ForeignKey in the IssuedBook model links each issued book to the specific user who has borrowed it.
+            - The related_name='issued_books' allows you to retrieve all the books issued by a particular user using user.issued_books.all().
+    3. BookSuggestion Model
+    - Standalone Entity:
+            - The BookSuggestion model is independent of the Book and IssuedBook models. It captures suggestions for new books that users want to see in the library.
+            - This model contains information about the suggested book's title and author, as well as optional fields for the user’s name, email, and reason for suggesting the book.
+            - While this model is not directly related to the Book or User models through foreign keys, it plays an important role in allowing users to contribute to the library’s growth.
+
+    <details><summary>Relations</summary><img src="documentation/readme_images/relation.jpg"></details>
 
 ### Existing Features
 
@@ -137,7 +162,7 @@ These links allow users to follow the store for updates, promotions, and communi
 - Simple, quick signup with confirmation email.
         <details><summary>Signup</summary><img src="documentation/readme_images/features/signup.jpg"></details>
         <details><summary>Confirmation Email Page</summary><img src="documentation/readme_images/features/confirmation-email-sent.jpg"></details>
-        <details><summary>Confirmation user Email</summary><img src="documentation/readme_images/features/confirmation-email-user.jpg"></details>
+        <details><summary>Confirmation user Email</summary><img src="documentation/readme_images/features/confirmation-email-newuser.jpg"></details>
 
 
 - The Login Page has a button to the signup page in case the person is not yet a user.
@@ -149,67 +174,45 @@ These links allow users to follow the store for updates, promotions, and communi
         <details><summary>Sign Out</summary><img src="documentation/readme_images/features/sign-out.jpg"></details>
          <details><summary>Toast Success Signed out</summary><img src="documentation/readme_images/features/toast-success-signout.jpg"></details>
 
+- Easy password reset by email.
+        <details><summary>Passoword Reset</summary><img src="documentation/readme_images/features/pass-reset.jpg"></details>
+        <details><summary>Reset Sent</summary><img src="documentation/readme_images/features/reset-sent.jpg"></details>
+        <details><summary>Recovery Email</summary><img src="documentation/readme_images/features/recovery-confirmation.jpg"></details>
+        <details><summary>No account registered</summary><img src="documentation/readme_images/features/no-account.jpg"></details>
 
-#### Book Suggestions Forms
 
-- Open the Suggestion book page in case anyone wants to suggest new books. 
-        <details><summary>Book Suggestion Form</summary><img src="documentation/readme_images/features/suggest-book.jpg"></details>
+#### Sign up/Login page
 
-- Thank you submission page.
-        <details><summary>Thank you page</summary><img src="documentation/readme_images/features/suggest-book-thanks.jpg"></details>
 
-- Easy and clean admin interface to view the book suggestions.
-        <details><summary>Admin Interface</summary><img src="documentation/readme_images/features/suggest-book-adm.jpg"></details>
+#### Administrator CRUD Function 
 
-#### Book Issuance System
+##### Products
 
-- Easy issuance when you click on a book cover, you will be directed to book details where, if logged in, it will show the option to book it; otherwise, it will show the login button.
-        <details><summary>Book Detail No User</summary><img src="documentation/readme_images/features/book-detail-nouser.jpg"></details>
-        <details><summary>Book Detail User Connected</summary><img src="documentation/readme_images/features/book-detail-user.jpg"></details>
+- As a web administrator, it is possible to add, update, or delete products .
+    - Adding a product:
+        1. On the navbar logged as super user you will have access to the Store management.
+                <details><summary>Management</summary><img src="documentation/readme_images/features/add-product.jpg"></details>
+        2. The link will bring you to a page where you can fill out the form to add a product.
+                <details><summary>Add a product form</summary><img src="documentation/readme_images/features/product-add-2.jpg"></details>
+        3. If a product cover is not loaded, it will automatically add a placeholder image saying "product image not available."
+                <details><summary>product Image not Available</summary><img src="documentation/readme_images/features/product-image-notavailable.jpg"></details>
+- As a web administrator, when on product details, the buttons to update and delete the product will be visible.
+            <details><summary>CRUD Options</summary><img src="documentation/readme_images/features/edit-product-0.jpg"></details>
+    - Updating a product:
+        1. Click on "Edit".
+        2. The "Update product" page will open where you can change all product information.
+                <details><summary>Update product</summary><img src="documentation/readme_images/features/edit-product.jpg"></details>
+                <details><summary>Updated Product Notification</summary><img src="documentation/readme_images/features/edit-product-2.jpg"></details>
+    - Deleting a product:
+        1. Click on "Delete".
+        2. You will open a modal for confirmation.
+                <details><summary>Delete product Confirmation</summary><img src="documentation/readme_images/features/delete-product.jpg"></details>
+                <details><summary>Delete product Notification</summary><img src="documentation/readme_images/features/delete-product-2.jpg"></details>
+#### Reviews
 
-- Confirmation screen showing the details of your issuance.
-        <details><summary>Issuance Details</summary><img src="documentation/readme_images/features/issue-book-screen.jpg"></details>
+- Reviews can also be created, edited or deleted by the user or deleted by the super user:
+        <details><summary>Review CRUD</summary><img src="documentation/readme_images/features/review-function.jpg"></details>
 
-- You can see your history and return the books on the My Issued Books Link on the Navigation bar.
-        <details><summary>My Issued Books</summary><img src="documentation/readme_images/features/issued-book-history.jpg"></details>
-
-- When returning a book, as a good practice, it has a confirmation.
-        <details><summary>Return Book Confirmation</summary><img src="documentation/readme_images/features/returning-book-confirmation.jpg"></details>
-        <details><summary>Book Return Notification</summary><img src="documentation/readme_images/features/book-return-notify.jpg"></details>
-
-#### Book Collection
-
-- The book collection has a search bar to search a title and shows the book cover and book name for easy visualization.
-        <details><summary>Book Collection</summary><img src="documentation/readme_images/features/bookcolection.jpg"></details>
-
-- When logged in as an admin, it shows the option at the top to add new books.
-        <details><summary>Admin Book Collection Interface</summary><img src="documentation/readme_images/features/add-book.jpg"></details>
-
-#### Administrator CRUD Function
-
-- As a web administrator, it is possible to add, update, or delete books.
-    - Adding a book:
-        1. On the Book Collection page as an Administrator, a button labeled "Add book" will be shown.
-                <details><summary>Add a book</summary><img src="documentation/readme_images/features/add-book.jpg"></details>
-        2. The link will bring you to a page where you can fill out the form to add a book.
-                <details><summary>Add a book form</summary><img src="documentation/readme_images/features/book-add-2.jpg"></details>
-        3. If a book cover is not loaded, it will automatically add a placeholder image saying "Book image not available."
-                <details><summary>Book Image not Available</summary><img src="documentation/readme_images/features/book-image-notavailable.jpg"></details>
-- As a web administrator, when on book details, the buttons to update and delete the book will be visible.
-            <details><summary>CRUD Options</summary><img src="documentation/readme_images/features/CRUD-edit-delete.jpg"></details>
-    - Updating a book:
-        1. Click on "Edit book."
-        2. The "Update Book" page will open where you can change all book information.
-                <details><summary>Update Book</summary><img src="documentation/readme_images/features/CRUD-edit.jpg"></details>
-    - Deleting a book:
-        1. Click on "Delete book."
-        2. You will be directed to a deletion page for confirmation.
-                <details><summary>Delete Book</summary><img src="documentation/readme_images/features/CRUD-delete.jpg"></details>
-
-#### Footer with Social Media Links  
-
-- The footer has social media links that open in a new page.
-            <details><summary>Footer</summary><img src="documentation/readme_images/features/footer.jpg"></details>
 
 #### Error Pages.
 
@@ -223,59 +226,21 @@ These links allow users to follow the store for updates, promotions, and communi
 
 #### Extra Functions
 
-- Late fee function: If the book is not returned in 14 days, a $1 fee will be applied for each day of delay.
-        <details><summary>Late Fee</summary><img src="documentation/readme_images/features/late-fee.jpg"></details>
-- You cannot issue two copies of the same title at once.
-        <details><summary>Book Already Issued Notification</summary><img src="documentation/readme_images/features/notification-book-already-issued.jpg"></details>
-- You can only issue 3 books at once.
-        <details><summary>Max Issue Notification</summary><img src="documentation/readme_images/features/max-issue.jpg"></details>
-- Book out of stock.
-        <details><summary>Book Out of Stock Notification</summary><img src="documentation/readme_images/features/out-of-stocks.jpg"></details>
+### Subscription
+- Subscription Model: Anyone can subscribe, saving their email for future marketing implementations.
+        <details><summary>Stay Connected</summary><img src="documentation/readme_images/features/stay-connected.jpg"></details>
+- Toast notification after submission.
+        <details><summary>Toast Successful Subscription</summary><img src="documentation/readme_images/features/stay-connected.jpg"></details>
+        <details><summary>Toast already subscribed Subscribed</summary><img src="documentation/readme_images/features/stay-connected.jpg"></details>
 
-## Technical Design
+### Wishlist
 
-### WireFrames
-
-- When the VIL-MASYS project began, I created basic wireframes to outline the initial design and functionality of the application. These wireframes served as a starting point to visualize the core structure and user flow. However, as development progressed, significant changes were made to improve the user experience, functionality, and overall design.
-
-- Initial WireFrame Design:
-        <details><summary>Home</summary><img src="documentation/readme_images/wireframes/home.jpg"></details>
-        <details><summary>Book Info</summary><img src="documentation/readme_images/wireframes/book-info.jpg"></details>
-        <details><summary>Login</summary><img src="documentation/readme_images/wireframes/login.jpg"></details>
-        <details><summary>Issued Book</summary><img src="documentation/readme_images/wireframes/issue-book-page.jpg"></details>
-        <details><summary>About</summary><img src="documentation/readme_images/wireframes/about.jpg"></details>
-
-- Key Changes:
-    - Enhanced User Interface: The initial wireframes were simple and lacked the visual appeal needed for a modern web application. As the project evolved, I introduced a more polished and intuitive interface, incorporating feedback and best practices in UI/UX design.
-
-    - Expanded Features: Originally, the wireframes focused on basic functionalities. During development, new features were added, such as personalized book recommendations, late fees, notifications, and advanced search capabilities, which were not part of the initial plan.
-
-    - Improved Navigation and Layout: The initial wireframes had a straightforward but somewhat limited navigation structure. I restructured the layout to provide a more seamless and logical flow, making it easier for users to navigate between different sections of the application.
-
-### Models Relationships
-
-- Key Relationships:
-    1. Book and IssuedBook Relationship
-        - Relationship Type: One-to-Many (ForeignKey)
-            Explanation:
-            - The Book model represents each book in the library's collection.
-            - The IssuedBook model keeps track of each instance where a book is issued to a user.
-            - A single Book can be issued multiple times, hence the one-to-many relationship. This is implemented using a ForeignKey in the IssuedBook model that references the Book model.
-            - The related_name='issued_books' allows you to access all issued records for a particular book using book.issued_books.all().
-    2. User and IssuedBook Relationship
-        - Relationship Type: One-to-Many (ForeignKey)
-            Explanation:
-            - The User model (from Django’s built-in authentication system) represents the users of the library system.
-            - Each user can issue multiple books over time. Therefore, there is a one-to-many relationship between User and IssuedBook.
-            - The ForeignKey in the IssuedBook model links each issued book to the specific user who has borrowed it.
-            - The related_name='issued_books' allows you to retrieve all the books issued by a particular user using user.issued_books.all().
-    3. BookSuggestion Model
-    - Standalone Entity:
-            - The BookSuggestion model is independent of the Book and IssuedBook models. It captures suggestions for new books that users want to see in the library.
-            - This model contains information about the suggested book's title and author, as well as optional fields for the user’s name, email, and reason for suggesting the book.
-            - While this model is not directly related to the Book or User models through foreign keys, it plays an important role in allowing users to contribute to the library’s growth.
-
-    <details><summary>Relations</summary><img src="documentation/readme_images/relation.jpg"></details>
+- Logged in user can create their own wish list:
+        <details><summary>Easy Add to Wishlist button</summary><img src="documentation/readme_images/features/add-to-wish-list.jpg"></details>
+- Easy and Clean Wishlist:
+        <details><summary>Easy Add to Wishlist button</summary><img src="documentation/readme_images/features/wishlist.jpg"></details>
+- Buttons to set quantity and add to bag to easy interaction.
+        <details><summary>Add to Bag function</summary><img src="documentation/readme_images/features/wishlist-add-to-bag.jpg"></details>
 
 ## Technologies
 
