@@ -33,7 +33,7 @@ This project exemplifies how **Python**, **Django**, **Bootstrap**, **Stripe**, 
 - When the VIL-MASYS project began, I created basic wireframes to outline the initial design and functionality of the application. These wireframes served as a starting point to visualize the core structure and user flow. However, as development progressed, significant changes were made to improve the user experience, functionality, and overall design.
 
 - Initial WireFrame Design:
-        <details><summary>Home</summary><img src="documentation/readme_images/wireframes/Initial_wireframes.jpg"></details>
+        <details><summary>Initial Wireframe Idea</summary><img src="documentation/readme_images/wireframes/Initial_wireframes.jpg"></details>
 
 
 - Key Changes:
@@ -45,29 +45,64 @@ This project exemplifies how **Python**, **Django**, **Bootstrap**, **Stripe**, 
 
 ### Models Relationships
 
+![Models Relationships](documentation/readme_images/features/db-relationships.jpg)
+
 - Key Relationships:
-    1. Book and IssuedBook Relationship
-        - Relationship Type: One-to-Many (ForeignKey)
+    1. Users and User Profiles (Boutique Ado/Django User Models)
+        - Relationship Type: One-to-One
             Explanation:
-            - The Book model represents each book in the library's collection.
-            - The IssuedBook model keeps track of each instance where a book is issued to a user.
-            - A single Book can be issued multiple times, hence the one-to-many relationship. This is implemented using a ForeignKey in the IssuedBook model that references the Book model.
-            - The related_name='issued_books' allows you to access all issued records for a particular book using book.issued_books.all().
-    2. User and IssuedBook Relationship
-        - Relationship Type: One-to-Many (ForeignKey)
+            - A User can have a single UserProfile for storing additional delivery and contact information.
+    2. Categories and Products (Boutique Ado Models)
+        - Relationship Type: One-to-Many
             Explanation:
-            - The User model (from Django’s built-in authentication system) represents the users of the library system.
-            - Each user can issue multiple books over time. Therefore, there is a one-to-many relationship between User and IssuedBook.
-            - The ForeignKey in the IssuedBook model links each issued book to the specific user who has borrowed it.
-            - The related_name='issued_books' allows you to retrieve all the books issued by a particular user using user.issued_books.all().
-    3. BookSuggestion Model
-    - Standalone Entity:
-            - The BookSuggestion model is independent of the Book and IssuedBook models. It captures suggestions for new books that users want to see in the library.
-            - This model contains information about the suggested book's title and author, as well as optional fields for the user’s name, email, and reason for suggesting the book.
-            - While this model is not directly related to the Book or User models through foreign keys, it plays an important role in allowing users to contribute to the library’s growth.
-
-    <details><summary>Relations</summary><img src="documentation/readme_images/relation.jpg"></details>
-
+            - Each Product belongs to a Category.
+            - A Category can contain multiple Products.
+    3. Orders and User Profiles (Boutique Ado Models)
+        - Relationship Type: One-to-Many
+            Explanation:
+            - Each Order is associated with a UserProfile.
+            - A UserProfile can place multiple Orders.
+            - Implemented using a ForeignKey in the Order model.
+    4. Orders and Order Line Items (Boutique Ado Models)
+        - Relationship Type: One-to-Many
+        - Models Involved: Order and OrderLineItem
+            Explanation:
+            - Each OrderLineItem represents a product in an Order.
+            - An Order can have multiple OrderLineItems.
+            - Implemented using a ForeignKey in the OrderLineItem model.
+    5. Products and Order Line Items (Boutique Ado Models)
+        - Relationship Type: One-to-Many
+        - Models Involved: Product and OrderLineItem
+            Explanation:
+            - Each OrderLineItem is linked to a Product.
+            - A Product can appear in multiple OrderLineItems.
+            - Implemented using a ForeignKey in the OrderLineItem model.
+    6. Reviews and Order Line Items
+        - Relationship Type: One-to-One
+        - Models Involved: Review and OrderLineItem
+            Explanation:
+            - Each Review can optionally be linked to an OrderLineItem to ensure that only purchased items are reviewed.
+            - A Product can appear in multiple OrderLineItems.
+            - Implemented using a ForeignKey in the Review model with null=True
+    7. User Profiles and Subscriptions
+        - Relationship Type: One-to-One
+            Explanation:
+            - Email field is unique
+            - A Subscription can optionally be linked to a UserProfile.
+            - Allows subscriptions for both registered users and unregistered email-only users.
+    8. Products and Wishlists
+        - Relationship Type: Many-to-Many
+        - Models Involved: Product, Wishlist, and User
+            Explanation:
+            - A Wishlist entry links a User to a Product.
+            - Users can add multiple products to their wishlist, and each product can be in multiple users' wishlists.
+    9. Products and Reviews
+        - Relationship Type: One-to-Many
+        - Models Involved: Product and Review.
+            Explanation:
+            - Each Review is linked to a Product
+            - A Product can have multiple Reviews
+            
 ### Existing Features
 
 #### Navigation bar
@@ -114,8 +149,9 @@ This section allows users to explore the store, learn about the brand, and conne
 Essential links to help customers with policies and common queries.
 
 - **Shipping & Returns**  
-  Information on shipping policies, expected delivery times, and the return process.  
-        
+  Information on shipping policies, expected delivery times, and the return process. 
+        <details><summary>Shipping & Returns</summary><img src="documentation/readme_images/features/shipping-returns.jpg"></details> 
+                
 
 - **FAQs**  
   A dedicated FAQ page to answer common questions about products, services, and more.  
@@ -130,7 +166,8 @@ Essential links to help customers with policies and common queries.
         <details><summary>Terms & Conditions</summary><img src="documentation/readme_images/features/terms-conditions.jpg"></details>
 
 #### Get Involved:
-This section provides information on workshops or events organized by the store to foster community engagement and creativity.  
+- **WorkShops** 
+ This section provides information on workshops or events organized by the store to foster community engagement and creativity.  
         <details><summary>Get Involved</summary><img src="documentation/readme_images/features/get-involved.jpg"></details>
 
 #### Store Hours:
@@ -142,7 +179,8 @@ Displays the store's operating hours and emphasizes availability for appointment
         <details><summary>Store Hours</summary><img src="documentation/readme_images/features/store-hours.jpg"></details>
 
 #### Stay Connected:
-Encourages users to subscribe for updates, offers, and inspiration. Includes a subscription form for entering an email address.  
+- **Subscription** 
+ Encourages users to subscribe for updates, offers, and inspiration. Includes a subscription form for entering an email address.  
         <details><summary>Stay Connected</summary><img src="documentation/readme_images/features/stay-connected.jpg"></details>
 
 #### Social Media Links:
@@ -152,8 +190,7 @@ Icons linking to social media platforms such as:
 - YouTube  
 - Pinterest  
 - TikTok  
-
-These links allow users to follow the store for updates, promotions, and community engagement.  
+ These links allow users to follow the store for updates, promotions, and community engagement.  
         <details><summary>Social Media Links</summary><img src="documentation/readme_images/features/social-media.jpg"></details>
 
 
@@ -161,12 +198,12 @@ These links allow users to follow the store for updates, promotions, and communi
 
 - Simple, quick signup with confirmation email.
         <details><summary>Signup</summary><img src="documentation/readme_images/features/signup.jpg"></details>
-        <details><summary>Confirmation Email Page</summary><img src="documentation/readme_images/features/confirmation-email-sent.jpg"></details>
-        <details><summary>Confirmation user Email</summary><img src="documentation/readme_images/features/confirmation-email-newuser.jpg"></details>
+        <details><summary>Confirmation Email Page</summary><img src="documentation/readme_images/features/confirm-email-sent.jpg"></details>
+        <details><summary>Confirmation user Email</summary><img src="documentation/readme_images/features/confirmation-newuser.jpg"></details>
 
 
 - The Login Page has a button to the signup page in case the person is not yet a user.
-        <details><summary>Login</summary><img src="documentation/readme_images/features/login.jpg"></details>
+        <details><summary>Login</summary><img src="documentation/readme_images/features/signin.jpg"></details>
         <details><summary>Toast Success Login</summary><img src="documentation/readme_images/features/toast-success-login.jpg"></details>
 
 
@@ -193,9 +230,9 @@ These links allow users to follow the store for updates, promotions, and communi
         1. On the navbar logged as super user you will have access to the Store management.
                 <details><summary>Management</summary><img src="documentation/readme_images/features/add-product.jpg"></details>
         2. The link will bring you to a page where you can fill out the form to add a product.
-                <details><summary>Add a product form</summary><img src="documentation/readme_images/features/product-add-2.jpg"></details>
+                <details><summary>Add a product form</summary><img src="documentation/readme_images/features/add-product-1.jpg"></details>
         3. If a product cover is not loaded, it will automatically add a placeholder image saying "product image not available."
-                <details><summary>product Image not Available</summary><img src="documentation/readme_images/features/product-image-notavailable.jpg"></details>
+                <details><summary>Product Image not Available</summary><img src="documentation/readme_images/features/add-product-2.jpg"></details>
 - As a web administrator, when on product details, the buttons to update and delete the product will be visible.
             <details><summary>CRUD Options</summary><img src="documentation/readme_images/features/edit-product-0.jpg"></details>
     - Updating a product:
@@ -230,8 +267,8 @@ These links allow users to follow the store for updates, promotions, and communi
 - Subscription Model: Anyone can subscribe, saving their email for future marketing implementations.
         <details><summary>Stay Connected</summary><img src="documentation/readme_images/features/stay-connected.jpg"></details>
 - Toast notification after submission.
-        <details><summary>Toast Successful Subscription</summary><img src="documentation/readme_images/features/stay-connected.jpg"></details>
-        <details><summary>Toast already subscribed Subscribed</summary><img src="documentation/readme_images/features/stay-connected.jpg"></details>
+        <details><summary>Toast Successful Subscription</summary><img src="documentation/readme_images/features/subscription-toast-ok.jpg"></details>
+        <details><summary>Toast already subscribed Subscribed</summary><img src="documentation/readme_images/features/subscription-toast.jpg"></details>
 
 ### Wishlist
 
@@ -244,61 +281,64 @@ These links allow users to follow the store for updates, promotions, and communi
 
 ## Technologies
 
-### Backend and Frameworks:
+### **Backend and Frameworks**
+- **Python**: Core programming language used for the project.
+- **JavaScript**: Used for enhancing the interactivity and responsiveness of the web application.
+- **Django**: Web framework for building the application's backend, handling models, views, and forms.
+- **Django ORM**: For database interactions and queries.
+- **Django Rest Framework (DRF)**: For building APIs.
 
-- **Python:** Core programming language used for the project.
-- **Django:** Web framework for building the application's backend, handling models, views, and forms.
-- **Django ORM:** For database interactions and queries.
+### **Frontend**
+- **HTML/CSS**: For structuring and styling the web pages.
+- **Bootstrap**: CSS framework for responsive design and UI components like the navbar, buttons, forms, and modals.
+- **JavaScript**: For adding interactivity and enhancing user experience with dynamic elements (e.g., form validation, AJAX, modals).
+- **Django Template Language (DTL)**: For rendering dynamic content on web pages by integrating Django backend logic with HTML templates.
+- **jQuery**: Simplifies DOM manipulation, AJAX requests, and event handling for dynamic content.
+- **Font Awesome**: For adding scalable vector icons and social media icons to enhance the UI.
+- **Custom CSS/JS**: Custom styles and scripts tailored to the specific needs of the project for a unique and polished design.
 
-### Frontend:
+### **Database**
+- **SQLite**: Default database used by Django for development/tests.
+- **PostgreSQL**: Database for production.
 
-- **HTML/CSS:** For structuring and styling the web pages.
-- **Bootstrap:** CSS framework for responsive design and UI components like the navbar and forms.
+### **Storage**
+- **AWS S3**: For managing and storing files like `.css` and images.
 
-### Database:
+### **Payment Systems**
+- **Stripe**: For managing secure payments.
 
-- **SQLite:** Default database used by Django for development/tests.
-- **PostgreSQL**:  Database for production.
+### **User Authentication**
+- **Django-Allauth**: For handling user registration, login, and social authentication.
 
-### Storage:
+### **Testing**
+- **Django Test Framework**: For unit and integration testing of models, views, and forms.
+- **Unittest**: Python's standard library for writing and running tests.
 
--  **Cloudinary:** For managing and storing media files such as images.
+### **Tools and Utilities**
+- **Git**: Version control system for tracking changes and collaborating.
+- **GitHub**: Platform for hosting the project repository.
+- **Visual Studio Code**: Local IDE for development.
 
-### User Authentication:
-- **Django's Authentication System:** For handling user registration, login, and permissions.
+### **Deployment**
+- **Heroku**: Cloud deployment platform.
 
-### Testing:
-- **Django Test Framework:** For unit and integration testing of models, views, and forms.
-- **Unittest:** Python's standard library for writing and running tests.
-
-- **Visual Studio Code:** Local IDE.
-
-### Tools and Utilities:
-- **Git:** Version control system for tracking changes and collaborating.
-- **GitHub:**  Platform for hosting the project repository.
-
-### Deployment:
-- **Heroku:** Cloud Deployment.
-
-### Others:
-- **Timezone and Date/Time Handling:** Managing timezones and datetime objects for accurate timestamps.
-- **Coverage:** Generate automated test reports.
-
-## Main used Libraries
-
-- **Django:** The main web framework used to build your application.
-- **Django Rest Framework (DRF):** for building APIs.
-- **Bootstrap:** For frontend styling and responsive design.
-- **Pillow:** For image handling in Django.
-- **Cloudinary:** For storing and serving media files (images) in the cloud.
-- **Unittest:** For writing and running tests in Django application.
-- **Django Messages Framework:** For displaying flash messages to users.
-- **Django Paginator:** For handling pagination in your views.
-- **PostgreSQL:** As the database backend.
-- **Django Crispy Forms:** To make Django forms more elegant and manageable.
-- **Gunicorn:** As a Python WSGI HTTP Server for serving your application.
-- **Whitenoise:** For serving static files in production.
-- **Django Storage:** For managing storage in cloud environments.
+### **Main Used Libraries**
+- **Django**: The main web framework used to build your application.
+- **Django Rest Framework (DRF)**: For building and managing APIs.
+- **Bootstrap**: For frontend styling and responsive design.
+- **Pillow**: For image handling in Django.
+- **Boto3**: For managing interactions with AWS services like S3.
+- **Python-Decouple**: For managing environment variables and keeping sensitive data secure.
+- **Stripe**: For handling secure payment processing in the checkout system.
+- **Whitenoise**: For serving static files in production environments.
+- **Django Storages**: Simplifies storing and managing static and media files in cloud storage.
+- **Django Crispy Forms**: To make Django forms more elegant and manageable.
+- **Pycountry**: To provide a comprehensive list of country data, ensuring consistent and up-to-date country names and codes.
+- **Gunicorn**: A Python WSGI HTTP server for serving your application in production.
+- **Psycopg2**: Database adapter for connecting Django to a PostgreSQL database.
+- **DJ-Database-URL**: Simplifies database configuration in production.
+- **Django Messages Framework**: For displaying flash messages to users.
+- **Django Paginator**: For handling pagination in your views.
 
 ## Testing and Fixing Bugs
 
@@ -310,7 +350,8 @@ These links allow users to follow the store for updates, promotions, and communi
 
    - [CI Python Linter - Code Institute](https://pep8ci.herokuapp.com/)  
    - [OpenAI Chat](https://chat.openai.com/)
-   - [Perplexity AI](https://www.perplexity.ai/) 
+   - [Perplexity AI](https://www.perplexity.ai/)
+   - [Diff Checker](https://www.diffchecker.com/)
 
 ## Testing 
 
@@ -390,12 +431,142 @@ These links allow users to follow the store for updates, promotions, and communi
 ![Deploy done](documentation/readme_images/general_info/done.jpg)
 
 
+## Stripe Payment Setup
+
+### Setting Up Stripe
+
+- **Create a Stripe Account**
+  1. Go to [Stripe's website](https://stripe.com/).
+  2. Click **"Sign Up"** and create an account.
+  3. Complete the onboarding process to activate your account.
+
+- **Get API Keys**
+  1. Log in to your Stripe Dashboard.
+  2. Navigate to **Developers > API keys**.
+  3. Copy the **Publishable Key** and **Secret Key** for your project.
+
+---
+
+### Integrating Stripe into Your Project
+
+- **Install Stripe Library**
+  1. Install the Stripe Python library by running:
+     ```bash
+     pip install stripe
+     ```
+
+- **Add API Keys to Environment Variables**
+  1. Store the keys securely using environment variables or a `.env` file:
+     ```
+     STRIPE_PUBLISHABLE_KEY=your-publishable-key
+     STRIPE_SECRET_KEY=your-secret-key
+     ```
+
+- **Update Django Settings**
+  1. Add the following to your `settings.py` file:
+     ```python
+     import os
+
+     STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
+     STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+     ```
+
+---
+
+### Testing Stripe Payments
+
+- **Enable Test Mode**
+  1. In your Stripe Dashboard, ensure you are in **Test Mode** (toggle in the top-right corner).
+
+- **Use Test Card Numbers**
+  1. Use Stripe's test card numbers to simulate transactions:
+     - Card Number: `4242 4242 4242 4242`
+     - Expiry Date: Any valid future date (e.g., `12/34`)
+     - CVC: Any 3 digits (e.g., `123`)
+
+- **Verify Payments**
+  1. After completing a payment, check the **Payments** section in your Stripe Dashboard to confirm the transaction.
+
+---
+
+### Live Deployment
+
+- **Switch to Live Keys**
+  1. Replace your test API keys with live keys from the Stripe Dashboard.
+
+- **Verify Configuration**
+  1. Test your payment system in production using live keys to ensure smooth transactions.
+
+Now your Stripe payment system is set up for both testing and production environments.
+
+
+### AWS Setup
+
+## AWS S3 Bucket Setup and Credentials
+
+### Setting Up an AWS S3 Bucket
+
+- **Create an S3 Bucket**
+  1. Log in to your AWS Management Console.
+  2. Navigate to the **S3** service.
+  3. Click **"Create bucket"**.
+  4. Enter a unique name for your bucket.
+  5. Choose a region closest to your server or users.
+  6. Leave the default settings.
+  7. Click **"Create bucket"** to finalize.
+
+- **Configure Bucket Permissions**
+  1. Open the bucket you created.
+  2. Go to the **Permissions** tab.
+  3. Under **Block Public Access settings**, configure the access level (e.g., allow public access if needed for static files).
+  4. Set up a **Bucket Policy**
+
+### Getting AWS Credentials for S3
+
+- **Generate AWS Access Keys**
+  1. Navigate to **IAM Management Console**.
+  2. In the left sidebar, click **Users**.
+  3. Select an existing user or create a new user with **Programmatic access**.
+  4. Attach the policy **AmazonS3FullAccess** or a custom policy with restricted access to your bucket.
+  5. After creating the user, you’ll receive **Access Key ID** and **Secret Access Key**.
+
+### Using AWS Credentials in Your Project
+
+- **Store Credentials Securely**
+  1. Add the access keys to your environment variables or a `.env` file:
+     ```
+     AWS_ACCESS_KEY_ID=your-access-key-id
+     AWS_SECRET_ACCESS_KEY=your-secret-access-key
+     AWS_STORAGE_BUCKET_NAME=your-bucket-name
+     AWS_REGION=your-region
+     ```
+
+- **Install Required Libraries**
+  1. If using Django, install `boto3` and `django-storages`:
+     ```bash
+     pip install boto3 django-storages
+     ```
+
+- **Update Django Settings**
+  1. Add the following to `settings.py`:
+
+     ```python
+     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+     AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+     AWS_S3_REGION_NAME = os.getenv('AWS_REGION')
+     ```
+
+
 ## Credits
 
 **Mentor:** [Harry Dhillon](https://github.com/Harry-Leepz/)
 
-**Base template:** [Code Instutute: I Think Therefore I Blog](https://github.com/Code-Institute-Solutions/blog/)
+**Base template:** [Code Instutute: Boutique Ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1/)
 
-**Book Covers:** Created Using [Canva](https://www.canva.com/)
+**Wireframes:** Created Using [Canva](https://www.canva.com/)
 
-**Book/Title Descriptions:** Generated with [ChatGPT](https://chatgpt.com/)
+**Product Images/Product Descriptions:** Generated with [ChatGPT](https://chatgpt.com/)
+
+**Model Relationship Diagrams:** [dbdiagram.io](https://dbdiagram.io/)
