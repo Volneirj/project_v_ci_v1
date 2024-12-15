@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -20,7 +20,6 @@
                 <hr>
             </div>
         </div>
-
         <div class="row">
             <div class="col-12 col-md-6 mx-auto">
                 <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2" enctype="multipart/form-data">
@@ -29,7 +28,16 @@
                         {% if field.name != 'image' %}
                             {{ field | as_crispy_field }}
                         {% else %}
-                            {{ field }}
+                            {% if product.image %}
+                                <p>Current Image:</p>
+                                <a href="{{ product.image.url }}" target="_blank">
+                                    <img src="{{ product.image.url }}" class="rounded shadow-sm" width="96" height="96" alt="{{ product.name }}">
+                                </a>
+                            {% endif %}
+                            <span class="btn btn-black rounded-0 btn-file">
+                                Select Image <input id="new-image" type="file" name="{{ field.name }}" accept="image/*">
+                            </span>
+                            <p class="text-danger" id="filename"></p>
                         {% endif %}
                     {% endfor %}
                     <div class="mx-auto">
@@ -37,18 +45,18 @@
                         <button class="btn btn-black rounded-0" type="submit">Update Product</button>
                     </div>
                 </form>
-            </div>            
+            </div>
         </div>
     </div>
 </div>
 {% endblock %}
 
 {% block postloadjs %}
-    {{ block.super }}
-    <script>
-        $('#new-image').change(function() {
-            var file = $('#new-image')[0].files[0];
-            $('#filename').text(`Image will be set to: ${file.name}`);
-        });
-    </script>
+{{ block.super }}
+<script>
+    $('input[type="file"]').change(function() {
+        var file = this.files[0];
+        $('#filename').text(`Image will be set to: ${file.name}`);
+    });
+</script>
 {% endblock %}
