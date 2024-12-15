@@ -25,13 +25,9 @@ All HTML pages were validated using the [W3C HTML Validator](https://validator.w
 | <details><summary>Login</summary><img src="documentation/readme_images/testing/html-check-login.jpg"></details>     | PASS   |
 | <details><summary>Logout</summary><img src="documentation/readme_images/testing/html-check-logout.jpg"></details>   | PASS   |
 | <details><summary>Password Recovery</summary><img src="documentation/readme_images/testing/html-check-password-recovery.jpg"></details> | PASS   |
-| <details><summary>Order History</summary><img src="documentation/readme_images/testing/html-check-order-history.jpg"></details> | PASS   |
-| <details><summary>Subscription</summary><img src="documentation/readme_images/testing/html-check-subscription.jpg"></details> | PASS   |
-| <details><summary>404 Error Page</summary><img src="documentation/readme_images/testing/html-check-404.jpg"></details> | PASS   |
-| <details><summary>500 Error Page</summary><img src="documentation/readme_images/testing/html-check-500.jpg"></details> | PASS   |
 
 
-The HTML is explained at [Bugs and Errors](#bugs-and-errors)
+The HTML error is explained at [Bugs and Errors](#bugs-and-errors)
 
 ### CSS
 
