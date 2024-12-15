@@ -193,7 +193,7 @@
             <form method="POST" action="{% url 'submit_review' product.id %}">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="rating">Rating:</label>
+                    <label for="rating-slider">Rating:</label>
                     <input
                         type="range"
                         id="rating-slider"
@@ -223,7 +223,6 @@
             </div>
         </div>
     {% endif %}
-    </div>
 </div>
 {% endblock %}
 
