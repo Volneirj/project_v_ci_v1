@@ -33,11 +33,18 @@ The HTML error is explained at [Bugs and Errors](#bugs-and-errors)
 
 - Using the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/), the CSS code was checked for errors using the direct input option.
 
-![screenshot](documentation/readme_images/testing/css-validation.jpg)  
+    <details><summary>base.css</summary><img src="documentation/readme_images/testing/css-base-validation.jpg"></details>
+    <details><summary>checkout.css</summary><img src="documentation/readme_images/testing/css-checkout-validation.jpg"></details>
+    <details><summary>profile.css</summary><img src="documentation/readme_images/testing/css-profile-validation.jpg"></details>
+
 
 ### Python
 
-- Using the [CI Python Linter - Code Institute](https://pep8ci.herokuapp.com/), the Python code was inspected and validated. All `.py` files were checked, and most issues found were related to missing or extra blank lines and long lines. All issues were fixed.
+- Using the [CI Python Linter - Code Institute](https://pep8ci.herokuapp.com/), the Python code was inspected and validated. All created or edited `.py` files were checked, and most issues found were related to missing or extra blank lines and long lines. All issues were fixed.
+
+### JavaScript
+
+- Using the [JS Hint](https://jshint.com/), the javascript code was inspected and validated. All `.py` files were checked, and most issues found were related missing semicollon. All issues were fixed.
 
 ## Responsiveness and Device Testing
 
@@ -45,13 +52,13 @@ Throughout the development process, the website was rigorously tested across a r
 
 ## Browser Testing
 
-The website was tested across Google Chrome, Safari, and Microsoft Edge, and no issues were found.
+The website was tested across Google Chrome, Safari, Microsoft Edge and the mobile test was done using Google Dev tools and a Xiaomi 11 and no issues were found.
 
 ## Manual and Automated Testing
 
 To ensure thorough testing, organization, and control throughout the development process, all testing activities were meticulously aligned with the requirements and acceptance criteria outlined in the epic and related user stories. This structured approach allowed us to systematically cover every aspect of the application, ensuring comprehensive test coverage and alignment with project goals.
 
-[Comprehensive Testing for Charmed&Crafted E-Commerce](https://github.com/Volneirj/project_v_ci_v1/issues/44)
+[User Story 44 - Comprehensive Testing for Charmed&Crafted E-Commerce](https://github.com/Volneirj/project_v_ci_v1/issues/44)
 
 ### Automated Testing
 
