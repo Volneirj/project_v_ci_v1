@@ -21,6 +21,7 @@ All HTML pages were validated using the [W3C HTML Validator](https://validator.w
 | <details><summary>Checkout</summary><img src="documentation/readme_images/testing/html-check-checkout.jpg"></details> | PASS   |
 | <details><summary>Checkout Success</summary><img src="documentation/readme_images/testing/html-check-checkout-success.jpg"></details> | PASS   |
 | <details><summary>Profile</summary><img src="documentation/readme_images/testing/html-check-profile.jpg"></details> | PASS   |
+| <details><summary>Register</summary><img src="documentation/readme_images/testing/html-check-signup.jpg"></details>     | ERROR   |
 | <details><summary>Login</summary><img src="documentation/readme_images/testing/html-check-login.jpg"></details>     | PASS   |
 | <details><summary>Logout</summary><img src="documentation/readme_images/testing/html-check-logout.jpg"></details>   | PASS   |
 | <details><summary>Password Recovery</summary><img src="documentation/readme_images/testing/html-check-password-recovery.jpg"></details> | PASS   |
@@ -28,7 +29,6 @@ All HTML pages were validated using the [W3C HTML Validator](https://validator.w
 | <details><summary>Subscription</summary><img src="documentation/readme_images/testing/html-check-subscription.jpg"></details> | PASS   |
 | <details><summary>404 Error Page</summary><img src="documentation/readme_images/testing/html-check-404.jpg"></details> | PASS   |
 | <details><summary>500 Error Page</summary><img src="documentation/readme_images/testing/html-check-500.jpg"></details> | PASS   |
-
 
 
 The HTML is explained at [Bugs and Errors](#bugs-and-errors)
@@ -118,7 +118,6 @@ Two issues were identified during testing: one related to CSRF token handling in
 The resolutions for both bugs are detailed below.
 
 
-
 Bug 1: CSRF Token Cookie Issue for Secure POST Requests
 [User Story 27 - Fix CSRF Token Cookie Issue for Secure POST Requests](https://github.com/Volneirj/project_v_ci_v1/issues/27)
 
@@ -130,8 +129,17 @@ This ensures the CSRF token cookie is set automatically for secure interactions.
 
 Bug 2: Toast Notifications Do Not Dismiss Properly
 [User Story 26 - Toast Notifications Do Not Dismiss Properly](https://github.com/Volneirj/project_v_ci_v1/issues/26)
+
 - Description: Users were unable to dismiss toast notifications (e.g., success or error messages) using the close button (x). This caused the toasts to persist unnecessarily.
 - Root Cause: The closing HTML tag for the toast container was misplaced, breaking the dismissal behavior.
 Solution:
 - Fixed the placement of the closing </div> tag in the toast template.
 Ensured that the data-dismiss (Bootstrap 4) attribute was used correctly for the close button.
+
+
+HTML Validation Issue: 
+Regarding the HTML validation error, I have chosen to leave it as is since it does not impact the application's functionality and is caused by Crispy Forms. Below, you can see the error encountered during validation testing with the [W3C HTML Validator](https://validator.w3.org/). The second image highlights the specific line where the error occurs, identified through page inspection.
+
+![HTML check signup](documentation/readme_images/testing/html-check-signup.jpg)
+
+![Signup error location HTML file](documentation/readme_images/testing/html-check-signup-error.jpg)
