@@ -57,7 +57,7 @@ class ContactUsForm(forms.Form):
             }),
         label="Name"
     )
-    email = forms.EmailField(
+    email_contact= forms.EmailField(
         widget=forms.EmailInput(
             attrs={
                 'class': 'form-control mb-3',

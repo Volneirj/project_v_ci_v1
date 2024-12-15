@@ -1,42 +1,35 @@
-# Table of Contents
-
-- [Code Validation](#code-validation)
-  - [HTML](#html)
-  - [CSS](#css)
-  - [JS](#css)
-  - [Python](#python)
-- [Responsiveness and Device Testing](#responsiveness-and-device-testing)
-- [Browser Testing](#browser-testing)
-- [Manual and Automated Testing](#manual-and-automated-testing) 
-  - [Automated Testing](#automated-testing)
-  - [Manual Testing](#manual-testing)
-- [Bugs and Errors](#bugs-and-errors)
-
 ### HTML
 
 All HTML pages were validated using the [W3C HTML Validator](https://validator.w3.org/). One error was identified on the Signup page, which will be discussed in the bugs and errors section.
-| Page                                                                                                               | Result            |
-| ------------------------------------------------------------------------------------------------------------------ | ----------------- |
-| <details><summary>Home</summary><img src="documentation/readme_images/testing/html-check-home.jpg"></details>        | PASS |
-| <details><summary>Contact Us</summary><img src="documentation/readme_images/testing/html-check-contact-us.jpg"></details> | PASS |
-| <details><summary>Our Story</summary><img src="documentation/readme_images/testing/html-check-our-story.jpg"></details> | PASS |
-| <details><summary>Shipping Returns</summary><img src="documentation/readme_images/testing/html-check-shipping-returns.jpg"></details> | PASS |
-| <details><summary>Faqs</summary><img src="documentation/readme_images/testing/html-check-faqs.jpg"></details> | PASS |
-| <details><summary>Privacy Policy</summary><img src="documentation/readme_images/testing/html-check-privacy-policy.jpg"></details> | PASS |
-| <details><summary>Term Condition</summary><img src="documentation/readme_images/testing/html-check-term-condition.jpg"></details> | PASS |
-| <details><summary>Workshop</summary><img src="documentation/readme_images/testing/html-check-workshop.jpg"></details> | PASS |
-| <details><summary>Products</summary><img src="documentation/readme_images/testing/html-check-products.jpg"></details> | PASS |
-| <details><summary>Add Product</summary><img src="documentation/readme_images/testing/html-check-add-product.jpg"></details> | PASS |
-| <details><summary>Edit Product</summary><img src="documentation/readme_images/testing/html-check-edit-product.jpg"></details> | PASS |
-| <details><summary>Product Detail</summary><img src="documentation/readme_images/testing/html-check-product-detail.jpg"></details> | PASS |
-| <details><summary>Wishlist</summary><img src="documentation/readme_images/testing/html-check-wishlist.jpg"></details> | PASS |
-| <details><summary>Bag</summary><img src="documentation/readme_images/testing/html-check-bag.jpg"></details> | PASS |
-| <details><summary>Checkout</summary><img src="documentation/readme_images/testing/html-check-checkout.jpg"></details> | PASS |
-| <details><summary>Checkout Success</summary><img src="documentation/readme_images/testing/html-check-checkout-success.jpg"></details> | PASS |
-| <details><summary>Profile</summary><img src="documentation/readme_images/testing/html-check-profile.jpg"></details> | PASS |
-| <details><summary>Login</summary><img src="documentation/readme_images/testing/html-check-login.jpg"></details> | PASS |
-| <details><summary>Logout</summary><img src="documentation/readme_images/testing/html-check-logout.jpg"></details> | PASS |
-| <details><summary>Password Recovery</summary><img src="documentation/readme_images/testing/html-check-password-recovery.jpg"></details> | PASS |
+
+| Page                                                                                                               | Result |
+|-------------------------------------------------------------------------------------------------------------------|--------|
+| <details><summary>Home</summary><img src="documentation/readme_images/testing/html-check-home.jpg"></details>        | PASS   |
+| <details><summary>Contact Us</summary><img src="documentation/readme_images/testing/html-check-contact-us.jpg"></details> | PASS   |
+| <details><summary>Our Story</summary><img src="documentation/readme_images/testing/html-check-our-story.jpg"></details> | PASS   |
+| <details><summary>Shipping Returns</summary><img src="documentation/readme_images/testing/html-check-shipping-returns.jpg"></details> | PASS   |
+| <details><summary>FAQs</summary><img src="documentation/readme_images/testing/html-check-faqs.jpg"></details>         | PASS   |
+| <details><summary>Privacy Policy</summary><img src="documentation/readme_images/testing/html-check-privacy-policy.jpg"></details> | PASS   |
+| <details><summary>Terms & Conditions</summary><img src="documentation/readme_images/testing/html-check-terms-conditions.jpg"></details> | PASS   |
+| <details><summary>Workshops</summary><img src="documentation/readme_images/testing/html-check-workshops.jpg"></details> | PASS   |
+| <details><summary>Products</summary><img src="documentation/readme_images/testing/html-check-products.jpg"></details> | PASS   |
+| <details><summary>Add Product</summary><img src="documentation/readme_images/testing/html-check-add-product.jpg"></details> | PASS   |
+| <details><summary>Edit Product</summary><img src="documentation/readme_images/testing/html-check-edit-product.jpg"></details> | PASS   |
+| <details><summary>Product Detail</summary><img src="documentation/readme_images/testing/html-check-product-detail.jpg"></details> | PASS   |
+| <details><summary>Wishlist</summary><img src="documentation/readme_images/testing/html-check-wishlist.jpg"></details> | PASS   |
+| <details><summary>Bag</summary><img src="documentation/readme_images/testing/html-check-bag.jpg"></details>         | PASS   |
+| <details><summary>Checkout</summary><img src="documentation/readme_images/testing/html-check-checkout.jpg"></details> | PASS   |
+| <details><summary>Checkout Success</summary><img src="documentation/readme_images/testing/html-check-checkout-success.jpg"></details> | PASS   |
+| <details><summary>Profile</summary><img src="documentation/readme_images/testing/html-check-profile.jpg"></details> | PASS   |
+| <details><summary>Login</summary><img src="documentation/readme_images/testing/html-check-login.jpg"></details>     | PASS   |
+| <details><summary>Logout</summary><img src="documentation/readme_images/testing/html-check-logout.jpg"></details>   | PASS   |
+| <details><summary>Password Recovery</summary><img src="documentation/readme_images/testing/html-check-password-recovery.jpg"></details> | PASS   |
+| <details><summary>Order History</summary><img src="documentation/readme_images/testing/html-check-order-history.jpg"></details> | PASS   |
+| <details><summary>Subscription</summary><img src="documentation/readme_images/testing/html-check-subscription.jpg"></details> | PASS   |
+| <details><summary>404 Error Page</summary><img src="documentation/readme_images/testing/html-check-404.jpg"></details> | PASS   |
+| <details><summary>500 Error Page</summary><img src="documentation/readme_images/testing/html-check-500.jpg"></details> | PASS   |
+
+
 
 The HTML is explained at [Bugs and Errors](#bugs-and-errors)
 
@@ -62,7 +55,7 @@ The website was tested across Google Chrome, Safari, and Microsoft Edge, and no 
 
 To ensure thorough testing, organization, and control throughout the development process, all testing activities were meticulously aligned with the requirements and acceptance criteria outlined in the epic and related user stories. This structured approach allowed us to systematically cover every aspect of the application, ensuring comprehensive test coverage and alignment with project goals.
 
-[Epic - Comprehensive Testing for Library Management System](https://github.com/Volneirj/project_iv_ci/issues/36)
+[Comprehensive Testing for Charmed&Crafted E-Commerce](https://github.com/Volneirj/project_v_ci_v1/issues/44)
 
 ### Automated Testing
 
@@ -98,28 +91,47 @@ Below are the reports on automated tests.
 
 A comprehensive manual testing process was conducted to address areas that automated tests could not cover. Every test has been documented in the user stories below, where they are meticulously organized by application and test type to ensure complete coverage and clarity.
 
-[User Story 23 - Tests About Page](https://github.com/Volneirj/project_iv_ci/issues/23)
+[User Story 34 - Bag App Manual Test 1 - Shopping Bag Functionality](https://github.com/Volneirj/project_v_ci_v1/issues/34)
 
-[User Story 27 - Comprehensive Manual Testing of Book Management Features](https://github.com/Volneirj/project_iv_ci/issues/27)
+[User Story 35 - Bag App Manual Test 2 - Context and Navigation](https://github.com/Volneirj/project_v_ci_v1/issues/35)
 
-[User Story 28 - Test Home App](https://github.com/Volneirj/project_iv_ci/issues/28)
+[User Story 36 - Checkout Manual Test 1 - Checkout Process](https://github.com/Volneirj/project_v_ci_v1/issues/36)
 
-[User Story 30 - Manual Tests Issuing and Returning Books](https://github.com/Volneirj/project_iv_ci/issues/30)
+[User Story 37 - Checkout Manual Test - Stripe Webhooks](https://github.com/Volneirj/project_v_ci_v1/issues/37)
 
-[User Story 31 - Manual Testing URL Issues App](https://github.com/Volneirj/project_iv_ci/issues/31)
+[User Story 38 - Home App Manual Tests 1 - Static Pages](https://github.com/Volneirj/project_v_ci_v1/issues/38)
 
-[User Story 34 - Manual Testing URL Users App](https://github.com/Volneirj/project_iv_ci/issues/34)
+[User Story 39 - Home App Manual Test 2 - Subscription Form](https://github.com/Volneirj/project_v_ci_v1/issues/39)
+
+[User Story 40 - Product App Manual Test 1 - Product Browsing and Interaction](https://github.com/Volneirj/project_v_ci_v1/issues/40)
+
+[User Story 41 - Products App Manual Test - Product Administration (CRUD)](https://github.com/Volneirj/project_v_ci_v1/issues/41)
+
+[User Story 42 - Profile App Manual Test - User Profile and Order Management](https://github.com/Volneirj/project_v_ci_v1/issues/42)
+
+[User Story 43 - User and Web Browsing Functional Tests](https://github.com/Volneirj/project_v_ci_v1/issues/43)  
 
 ### Bugs and Errors
 
-Two issues were identified during testing: one related to time zone handling in the model and another concerning HTML form validation on the sign-up page. The first bug involved a conflict when calculating the return date due to time zone differences, which has been successfully resolved. The second issue, stemming from Crispy Forms, affected form validation. 
+Two issues were identified during testing: one related to CSRF token handling in the checkout workflow and another concerning toast notifications failing to dismiss properly on the frontend. The first bug caused a "403 Forbidden" error during CSRF-protected POST requests, and the second issue prevented users from dismissing notifications smoothly.
 
-The resolution for the time zone bug is detailed in the stories below.
+The resolutions for both bugs are detailed below.
 
-[User Story 36 - Handle Timezone-Related Issues in Book Issuance](https://github.com/Volneirj/project_iv_ci/issues/32)
 
-Regarding the HTML validation error, I have chosen to leave it as is since it does not impact the application's functionality and is caused by Crispy Forms. Below, you can see the error encountered during validation testing with the [W3C HTML Validator](https://validator.w3.org/). The second image highlights the specific line where the error occurs, identified through page inspection.
 
-![HTML check signup](documentation/readme_images/testing/html-check-signup.jpg)
+Bug 1: CSRF Token Cookie Issue for Secure POST Requests
+[User Story 27 - Fix CSRF Token Cookie Issue for Secure POST Requests](https://github.com/Volneirj/project_v_ci_v1/issues/27)
 
-![Signup error location HTML file](documentation/readme_images/testing/html-check-signup-error.jpg)
+- Description: Actions requiring CSRF-protected POST requests, such as adding items to the wishlist or submitting forms, triggered a "403 Forbidden: CSRF token from POST incorrect" error.
+- Root Cause: The csrftoken cookie was not being set correctly when users visited pages that required CSRF protection.
+- Solution:
+Added the @ensure_csrf_cookie decorator to views rendering forms or pages performing CSRF-protected actions.
+This ensures the CSRF token cookie is set automatically for secure interactions.
+
+Bug 2: Toast Notifications Do Not Dismiss Properly
+[User Story 26 - Toast Notifications Do Not Dismiss Properly](https://github.com/Volneirj/project_v_ci_v1/issues/26)
+- Description: Users were unable to dismiss toast notifications (e.g., success or error messages) using the close button (x). This caused the toasts to persist unnecessarily.
+- Root Cause: The closing HTML tag for the toast container was misplaced, breaking the dismissal behavior.
+Solution:
+- Fixed the placement of the closing </div> tag in the toast template.
+Ensured that the data-dismiss (Bootstrap 4) attribute was used correctly for the close button.

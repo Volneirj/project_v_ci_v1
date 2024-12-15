@@ -102,6 +102,57 @@ This project exemplifies how **Python**, **Django**, **Bootstrap**, **Stripe**, 
             Explanation:
             - Each Review is linked to a Product
             - A Product can have multiple Reviews
+
+
+### **UX/UI Color Scheme and Design**
+
+The CSS file defines a **modern, minimalistic, and responsive design**. Below is a summary of the key aspects:
+
+---
+
+### **Color Scheme**
+- **Primary Colors**:
+
+| **Color Name**       | **Hex Code** | **Description**                                           |
+|-----------------------|--------------|-----------------------------------------------------------|
+| **Store Overlay**    | `#fff7ff`    | Subtle light pink overlay for store and footer pages |
+| **White**            | `#ffffff`    | Used as the background color exclusively for bag/checkout.    |
+| **Black**            | `#000000`    | Used for text, buttons, and borders.                     |
+| **Dark Blue**        | `#2f4a7a`    | Highlights key areas like store backgrounds.             |
+| **Gray - Dark**      | `#333333`    | Footer and neutral dark tones.                           |
+| **Gray - Neutral**   | `#212529`    | Used for hover effects and neutral elements.             |
+| **Gray - Light**     | `#dddddd`    | Light neutral tones for borders and accents.             |
+
+
+- **Accent Colors**:
+
+| **Color Name**           | **Hex Code** | **Description**                                                   |
+|---------------------------|--------------|-------------------------------------------------------------------|
+| **Bootstrap - Primary**   | `#007bff`    | Standard blue used in buttons and links.                         |
+| **Bootstrap - Success**   | `#28a745`    | Green for success messages and positive notifications.           |
+| **Bootstrap - Danger**    | `#dc3545`    | Red for errors, warnings, or emphasis on critical actions.       |
+| **Bootstrap - Warning**   | `#ffc107`    | Yellow for cautionary messages.                                  |
+| **Bootstrap - Info**      | `#17a2b8`    | Cyan for informational highlights.                               |
+| **Red**                   | `#dc3545`    | Additional red for wishlist and warning components.              |
+| **Blue**                  | `#0146f0`    | Highlights links and interactive elements.                       |
+
+---
+
+### **UI Components**
+1. **Buttons**:
+   - Predominantly black (`#000`) with white text.
+   - Hover effects darken the buttons slightly (`#222`) for a subtle, interactive feel.
+
+2. **Forms and Inputs**:
+   - Clean borders with black outlines.
+   - Placeholders styled in light gray (`#aab7c4`) for subtle hints without overpowering the form.
+
+3. **Cards and Containers**:
+   - Cards have rounded corners (`border-radius: 10px`) and drop shadows (`box-shadow`) for a polished look.
+
+4. **Footer**:
+   - Dark gray background (`#333333`) with white text for high contrast and readability.
+   - Social links and hover effects enhance interactivity.
             
 ### Existing Features
 
