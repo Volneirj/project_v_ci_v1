@@ -33,6 +33,7 @@ class SubscriptionForm(forms.ModelForm):
                 'class': 'form-control mr-2 mb-2 mb-lg-0',
                 'placeholder': 'Enter your email',
                 'style': 'border-radius: 0;',
+                'id': 'id_subscription_email',
             }),
         }
 
@@ -57,7 +58,7 @@ class ContactUsForm(forms.Form):
             }),
         label="Name"
     )
-    email_contact= forms.EmailField(
+    email= forms.EmailField(
         widget=forms.EmailInput(
             attrs={
                 'class': 'form-control mb-3',
