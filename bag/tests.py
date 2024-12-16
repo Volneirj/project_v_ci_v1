@@ -3,7 +3,6 @@ from django.urls import reverse
 from products.models import Product
 
 
-
 class TestBagViews(TestCase):
 
     def setUp(self):
@@ -18,13 +17,15 @@ class TestBagViews(TestCase):
         self.view_bag_url = reverse('view_bag')
         self.add_to_bag_url = reverse('add_to_bag', args=[self.product.id])
         self.adjust_bag_url = reverse('adjust_bag', args=[self.product.id])
-        self.remove_from_bag_url = reverse('remove_from_bag', args=[self.product.id])
+        self.remove_from_bag_url = reverse(
+            'remove_from_bag',
+            args=[self.product.id]
+            )
 
         # Add the product to the bag
         session = self.client.session
         session['bag'] = {str(self.product.id): 1}
         session.save()
-
 
     def test_view_bag(self):
         """
@@ -42,7 +43,7 @@ class TestBagViews(TestCase):
         Test adding a product to the bag.
         """
         add_to_bag_url = reverse('add_to_bag', args=[self.product.id])
-        
+
         # Send POST request to add product to the bag
         response = self.client.post(
             add_to_bag_url,
@@ -70,7 +71,7 @@ class TestBagViews(TestCase):
             {'quantity': 3},
             follow=True
         )
-        
+
         # Retrieve session data (Bag content)
         session = self.client.session
 
@@ -106,7 +107,7 @@ class TestBagViews(TestCase):
         """
         # initialize a session
         session = self.client.session
-        session['bag'] = {} # Clear bag for the test
+        session['bag'] = {}  # Clear bag for the test
         session.save()
 
         response = self.client.post(
