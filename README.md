@@ -279,7 +279,7 @@ Icons linking to social media platforms such as:
 - As a web administrator, it is possible to add, update, or delete products .
     - Adding a product:
         1. On the navbar logged as super user you will have access to the Store management.
-                <details><summary>Management</summary><img src="documentation/readme_images/features/add-product.jpg"></details>
+                <details><summary>Add Products</summary><img src="documentation/readme_images/features/add-product.jpg"></details>
         2. The link will bring you to a page where you can fill out the form to add a product.
                 <details><summary>Add a product form</summary><img src="documentation/readme_images/features/add-product-1.jpg"></details>
         3. If a product cover is not loaded, it will automatically add a placeholder image saying "product image not available."
@@ -296,6 +296,19 @@ Icons linking to social media platforms such as:
         2. You will open a modal for confirmation.
                 <details><summary>Delete product Confirmation</summary><img src="documentation/readme_images/features/delete-product.jpg"></details>
                 <details><summary>Delete product Notification</summary><img src="documentation/readme_images/features/delete-product-2.jpg"></details>
+
+
+##### Products
+
+- As a web administrator, it is to see all e-commerce orders.
+    - Orders and Order Details:
+        1. On the navbar logged as super user you will have access to the Orders.
+                <details><summary>Orders</summary><img src="documentation/readme_images/features/orders-management.jpg"></details>
+
+        2. In orders to have full detailed order you can click in order detaisl.
+                <details><summary>Order Details</summary><img src="documentation/readme_images/features/orders-details-admin.jpg"></details>
+
+
 #### Reviews
 
 - Reviews can also be created, edited or deleted by the user or deleted by the super user:

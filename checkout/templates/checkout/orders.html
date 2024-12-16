@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay clearover">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <hr>
+                    <h2 class="logo-font mb-4">Order Management</h2>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                    <div class="order-confirmation-wrapper p-4 border">
+                        <h1>Order List</h1>
+                        <!-- Make table responsive -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Order Number</th>
+                                        <th>Date</th>
+                                        <th>Customer</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in orders %}
+                                    <tr>
+                                        <td>{{ order.order_number }}</td>
+                                        <td>{{ order.date|date:"d M Y H:i" }}</td>
+                                        <td>{{ order.full_name }}</td>
+                                        <td>${{ order.grand_total }}</td>
+                                        <td>{{ order.status }}</td>
+                                        <td>
+                                            <a href="{% url 'order_detail' order.id %}">View Details</a>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="6">No orders found.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock %}

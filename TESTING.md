@@ -25,6 +25,7 @@ All HTML pages were validated using the [W3C HTML Validator](https://validator.w
 | <details><summary>Login</summary><img src="documentation/readme_images/testing/html-check-login.jpg"></details>     | PASS   |
 | <details><summary>Logout</summary><img src="documentation/readme_images/testing/html-check-logout.jpg"></details>   | PASS   |
 | <details><summary>Password Recovery</summary><img src="documentation/readme_images/testing/html-check-password-recovery.jpg"></details> | PASS   |
+| <details><summary>Order Management</summary><img src="documentation/readme_images/testing/html-check-orders.jpg"></details>   | PASS   |
 
 
 The HTML error is explained at [Bugs and Errors](#bugs-and-errors)

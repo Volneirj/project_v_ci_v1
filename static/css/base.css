@@ -433,6 +433,20 @@ input[type=number] {
     font-size: 0.5em !important;
 }
 
+/* Ensure text wraps inside the order container*/
+.wrap-text {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 /* Responsive Adjustments */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
