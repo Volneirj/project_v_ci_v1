@@ -10,6 +10,7 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db.models import Avg
+from django.urls import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
@@ -67,6 +68,7 @@ class Product(models.Model):
     )
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.name)
@@ -81,6 +83,12 @@ class Product(models.Model):
         avg_rating = self.reviews.aggregate(
             avg_rating=Avg('rating'))['avg_rating']
         return avg_rating if avg_rating is not None else self.rating
+    
+    def get_absolute_url(self):
+        """
+        Returns the canonical URL for the product using its ID.
+        """
+        return reverse('product_detail', args=[self.id])
 
 
 class Wishlist(models.Model):

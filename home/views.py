@@ -1,6 +1,7 @@
 """Home views setup"""
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.conf import settings
 from django.utils.http import url_has_allowed_host_and_scheme
@@ -127,3 +128,19 @@ def contact_us(request):
         form = ContactUsForm()
 
     return render(request, 'home/contact_us.html', {'form': form})
+
+
+def robots_txt(request):
+    """
+    Generate a robots.txt file for the project.
+    """
+    lines = [
+        "User-agent: *",
+        "Disallow: /admin/",
+        "Disallow: /checkout/",
+        "Allow: /",
+        "Sitemap: https://"
+        "charmedandcrafted-65c7adf04e90.herokuapp.com/"
+        "sitemap.xml",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")

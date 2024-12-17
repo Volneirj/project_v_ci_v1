@@ -3,6 +3,13 @@ Home URL settings.
 """
 from django.urls import path
 from . import views
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import ProductSitemap, StaticViewSitemap
+
+sitemaps = {
+    'products': ProductSitemap(),
+    'static': StaticViewSitemap(),
+}
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -14,4 +21,6 @@ urlpatterns = [
     path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
     path('terms-conditions/', views.terms_conditions, name='terms_conditions'),
     path('workshops/', views.workshops, name='workshops'),
+    path('robots.txt', views.robots_txt, name='robots'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 ]
