@@ -624,6 +624,12 @@ Now your Stripe payment system is set up for both testing and production environ
      AWS_S3_REGION_NAME = os.getenv('AWS_REGION')
      ```
 
+## Future Implementations
+
+- Add product type selection essence/color/sizes.
+- Use the subscribes data to generate advertising content.
+- Create Own Website email.
+- Create Unique Email templates.
 
 ## Credits
 
