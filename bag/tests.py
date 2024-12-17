@@ -44,6 +44,11 @@ class TestBagViews(TestCase):
         """
         add_to_bag_url = reverse('add_to_bag', args=[self.product.id])
 
+        # Clear the bag
+        session = self.client.session
+        session['bag'] = {}
+        session.save()
+
         # Send POST request to add product to the bag
         response = self.client.post(
             add_to_bag_url,

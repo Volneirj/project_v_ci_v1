@@ -83,13 +83,14 @@ To create the coverage report, I ran the following commands:
 
 Below are the reports on automated tests.
 
-| App    | Screenshot                                                                 | 
-| ------ | -------------------------------------------------------------------------- | 
-| Home   | ![screenshot](documentation/readme_images/testing/report-home.jpg)           |
-| Books  | ![screenshot](documentation/readme_images/testing/report-books.jpg)          |
-| Issues | ![screenshot](documentation/readme_images/testing/report-issues.jpg)         |
-| Users  | ![screenshot](documentation/readme_images/testing/report-users.jpg)          |
-| About  | ![screenshot](documentation/readme_images/testing/report-about.jpg)          |
+| App       | Screenshot                                                                 |
+|-----------|----------------------------------------------------------------------------|
+| Home      | <details><summary>Report Home</summary><img src="documentation/readme_images/testing/report-home.jpg"></details> |
+| Bag       | <details><summary>Report Bag</summary><img src="documentation/readme_images/testing/report-bag.jpg"></details>   |
+| Checkout  | <details><summary>Report Checkout</summary><img src="documentation/readme_images/testing/report-checkout.jpg"></details> |
+| Products  | <details><summary>Report Products</summary><img src="documentation/readme_images/testing/report-products.jpg"></details> |
+| Profile   | <details><summary>Report Profile</summary><img src="documentation/readme_images/testing/report-profiles.jpg"></details> |
+
 
 ### Manual Testing
 
