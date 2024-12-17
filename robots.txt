@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://charmedandcrafted-65c7adf04e90.herokuapp.com/sitemap.xml
