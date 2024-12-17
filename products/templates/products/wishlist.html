@@ -26,16 +26,20 @@
                         <li class="wishlist-item d-flex align-items-center mb-4">
                             <!-- Product Image -->
                             <div class="wishlist-image mr-3">
-                                {% if item.product.image %}
-                                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid" style="width: 100px; height: auto;">
-                                {% else %}
-                                    <img src="{{ MEDIA_URL }}noimage.webp" alt="{{ item.product.name }}" class="img-fluid" style="width: 100px; height: auto;">
-                                {% endif %}
+                                <a href="{% url 'product_detail' item.product.id %}">
+                                    {% if item.product.image %}
+                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid" style="width: 100px; height: auto;">
+                                    {% else %}
+                                        <img src="{{ MEDIA_URL }}noimage.webp" alt="{{ item.product.name }}" class="img-fluid" style="width: 100px; height: auto;">
+                                    {% endif %}
+                                </a>
                             </div>
 
                             <!-- Product Details -->
                             <div class="wishlist-details flex-grow-1">
-                                <p class="mb-1 font-weight-bold">{{ item.product.name }}</p>
+                                <a href="{% url 'product_detail' item.product.id %}" class="text-decoration-none text-dark">
+                                    {{ item.product.name }}
+                                </a>
                                 <p class="text-muted">${{ item.product.price }}</p>
                             </div>
 
