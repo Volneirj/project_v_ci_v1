@@ -78,6 +78,7 @@ class StripeWebHandler:
                     profile.default_phone_number = shipping_details.get(
                         'phone'
                         )
+                    profile.default_name = shipping_details.get('name')
                     profile.default_country = address.get('country')
                     profile.default_postcode = address.get('postal_code')
                     profile.default_town_or_city = address.get('city')
