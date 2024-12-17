@@ -34,7 +34,7 @@ This project exemplifies the power of combining **Python**, **Django**, **Bootst
 - When the VIL-MASYS project began, I created basic wireframes to outline the initial design and functionality of the application. These wireframes served as a starting point to visualize the core structure and user flow. However, as development progressed, significant changes were made to improve the user experience, functionality, and overall design.
 
 - Initial WireFrame Design:
-        <details><summary>Initial Wireframe Idea</summary><img src="documentation/readme_images/wireframes/Initial_wireframes.jpg"></details>
+        <details><summary>Initial Wireframe Idea</summary><img src="documentation/readme_images/features/initial_wireframes.jpg"></details>
 
 
 - Key Changes:
